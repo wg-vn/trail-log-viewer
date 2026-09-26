@@ -18,15 +18,15 @@ jobs:
         stability: [prefer-lowest, prefer-stable]
         include:
           - laravel: 12.*
-            testbench: ^10.12
-            pest: ^4.7
-            pest-plugin: ^4.1
-            collision: ^8.9
+            testbench: ~10.12
+            pest: ~4.7
+            pest-plugin: ~4.1
+            collision: ~8.9
           - laravel: 13.*
-            testbench: ^11.3
-            pest: ^5.2
-            pest-plugin: ^5.0
-            collision: ^8.9
+            testbench: ~11.3
+            pest: ~5.2
+            pest-plugin: ~5.0
+            collision: ~8.9
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
