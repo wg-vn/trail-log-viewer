@@ -106,7 +106,7 @@
             </div>
           </div>
 
-          <tab-container v-if="logViewerStore.isOpen(index)" :tabs="getTabsForLog(log)" :default-tab="getDefaultTabForLog(log)">
+          <tab-container v-if="logViewerStore.isOpen(index)" :tabs="getTabsForLog(log)">
             <tab-content v-if="log.extra && log.extra.mail_preview && log.extra.mail_preview.html" tab-value="mail_html_preview">
               <mail-html-preview :mail="log.extra.mail_preview" />
             </tab-content>
@@ -254,36 +254,6 @@ const getTabsForLog = (log) => {
   return tabs.filter(Boolean);
 }
 
-const getDefaultTabForLog = (log) => {
-  const q = String(searchStore.query || '').trim().toLowerCase();
-  if (!q) return null;
-
-  if (log.extra && log.extra.mail_preview) {
-    const mailText = String(log.extra.mail_preview.text || '').toLowerCase();
-    const mailHtml = String(log.extra.mail_preview.html || '').toLowerCase();
-    if (mailHtml.includes(q)) return 'mail_html_preview';
-    if (mailText.includes(q)) return 'mail_text_preview';
-  }
-
-  const exceptionStr = (Array.isArray(log.context)
-    ? log.context.find(item => item?.exception)?.exception
-    : log.context?.exception) || '';
-  const stackTraceHasMatch = String(exceptionStr).toLowerCase().includes(q);
-
-  if (stackTraceHasMatch) {
-    return 'laravel_stack_trace';
-  }
-
-  const contextStr = log.context ? JSON.stringify(log.context).toLowerCase() : '';
-  const fullTextStr = String(log.full_text || '').toLowerCase();
-  const rawHasMatch = contextStr.includes(q) || fullTextStr.includes(q);
-
-  if (rawHasMatch) {
-    return 'raw';
-  }
-
-  return null;
-}
 
 const prepareContextForOutput = (context) => {
   return JSON.stringify(context, function (key, value) {
