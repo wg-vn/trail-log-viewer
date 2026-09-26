@@ -266,10 +266,18 @@ export const useLogViewerStore = defineStore('logViewer', {
               this.reset();
               if (data.expandAutomatically) {
                 this.stacksOpen.push(0);
+                this.onScroll();
               }
             });
           } else {
             document.dispatchEvent(new Event('logsPageLoadedSilently'));
+            if (data.expandAutomatically && this.stacksOpen.length === 0) {
+              this.stacksOpen.push(0);
+              this.onScroll();
+            } else if (!data.expandAutomatically && (data.pagination?.total > 1 || data.logs?.length > 1)) {
+              this.stacksOpen = this.stacksOpen.filter(idx => idx !== 0);
+              this.onScroll();
+            }
           }
 
           if (this.hasMoreResults) {

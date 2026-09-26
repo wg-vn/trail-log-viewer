@@ -15,17 +15,38 @@
 </template>
 
 <script setup>
-import {provide, ref} from "vue";
+import {provide, ref, watch} from "vue";
 
 const props = defineProps({
   tabs: {
     type: Array,
     required: true,
   },
+  defaultTab: {
+    type: String,
+    default: null,
+  },
 })
 
-const currentTab = ref(props.tabs[0]);
+const getInitialTab = () => {
+  if (props.defaultTab) {
+    const found = props.tabs.find(t => t.value === props.defaultTab);
+    if (found) return found;
+  }
+  return props.tabs[0];
+};
+
+const currentTab = ref(getInitialTab());
 provide('currentTab', currentTab);
+
+watch(() => props.defaultTab, (newVal) => {
+  if (newVal) {
+    const found = props.tabs.find(t => t.value === newVal);
+    if (found) {
+      currentTab.value = found;
+    }
+  }
+});
 
 const isCurrent = (tab) => {
   return currentTab.value && currentTab.value.value === tab.value;

@@ -156,3 +156,71 @@ test('date_from and date_to parameters filter logs by timestamp range', function
     $response->assertOk();
     expect($response->json('logs'))->toHaveCount(2);
 });
+
+test('expandAutomatically is true when a query returns a single log entry in a file', function () {
+    $logEntries = [
+        makeLaravelLogEntry(message: 'Target single error ba0cb756-0b75-4ea2-9880-758eabe201f8'),
+        makeLaravelLogEntry(message: 'Other log message 1'),
+        makeLaravelLogEntry(message: 'Other log message 2'),
+    ];
+    $file = generateLogFile('log_single_element_test.log', implode(PHP_EOL, $logEntries));
+
+    $response = getJson(route('log-viewer.logs', [
+        'file' => $file->identifier,
+        'query' => 'ba0cb756-0b75-4ea2-9880-758eabe201f8',
+    ]));
+
+    $response->assertOk();
+    expect($response->json('logs'))->toHaveCount(1);
+    expect($response->json('expandAutomatically'))->toBeTrue();
+});
+
+test('expandAutomatically is true when a single element is queried across all files', function () {
+    $logEntries = [
+        makeLaravelLogEntry(message: 'Global single entry ba0cb756-0b75-4ea2-9880-758eabe201f8'),
+        makeLaravelLogEntry(message: 'Other log message 1'),
+        makeLaravelLogEntry(message: 'Other log message 2'),
+    ];
+    generateLogFile('log_global_single_element_test.log', implode(PHP_EOL, $logEntries));
+
+    $response = getJson(route('log-viewer.logs', [
+        'query' => 'ba0cb756-0b75-4ea2-9880-758eabe201f8',
+    ]));
+
+    $response->assertOk();
+    expect($response->json('logs'))->toHaveCount(1);
+    expect($response->json('expandAutomatically'))->toBeTrue();
+});
+
+test('expandAutomatically is false when a query returns multiple log entries', function () {
+    $logEntries = [
+        makeLaravelLogEntry(message: 'Shared search term alpha'),
+        makeLaravelLogEntry(message: 'Shared search term beta'),
+        makeLaravelLogEntry(message: 'Other log message'),
+    ];
+    $file = generateLogFile('log_multi_element_test.log', implode(PHP_EOL, $logEntries));
+
+    $response = getJson(route('log-viewer.logs', [
+        'file' => $file->identifier,
+        'query' => 'Shared search term',
+    ]));
+
+    $response->assertOk();
+    expect($response->json('logs'))->toHaveCount(2);
+    expect($response->json('expandAutomatically'))->toBeFalse();
+});
+
+test('expandAutomatically is false when no query is provided on multiple logs', function () {
+    $logEntries = [
+        makeLaravelLogEntry(message: 'First entry'),
+        makeLaravelLogEntry(message: 'Second entry'),
+    ];
+    $file = generateLogFile('log_no_query_test.log', implode(PHP_EOL, $logEntries));
+
+    $response = getJson(route('log-viewer.logs', [
+        'file' => $file->identifier,
+    ]));
+
+    $response->assertOk();
+    expect($response->json('expandAutomatically'))->toBeFalse();
+});

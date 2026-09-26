@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2026-09-26
+
+### Added
+- Auto-display single matched query element: automatically expands the log entry by default when a search query matches exactly one log entry across all files or within a selected file.
+- Smart tab focus: automatically activates the Raw tab when a search query matches attributes inside context or raw log text (e.g. error ID, correlation UUID), and activates Stack Trace when matching exception frames.
+
 ## [1.1.0] - 2026-09-25
 
 ### Added

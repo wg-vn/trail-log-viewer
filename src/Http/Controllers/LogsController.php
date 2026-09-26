@@ -53,12 +53,13 @@ class LogsController
         }
 
         $seekPage = null;
+        $expandAutomatically = false;
 
         if (isset($logQuery)) {
             try {
                 $logQuery->search($query);
 
-                if (isset($file) && Str::startsWith($query, 'log-index:')) {
+                if (Str::startsWith($query, 'log-index:')) {
                     $logIndex = explode(':', $query)[1];
                     $expandAutomatically = intval($logIndex) || $logIndex === '0';
                 }
@@ -92,6 +93,10 @@ class LogsController
 
                 $hasMoreResults = $logQuery->requiresScan();
                 $percentScanned = $logQuery->percentScanned();
+
+                if (! empty(trim($query)) && isset($logs) && $logs->total() === 1) {
+                    $expandAutomatically = true;
+                }
             } catch (InvalidRegularExpression $exception) {
                 $queryError = $exception->getMessage();
             }
