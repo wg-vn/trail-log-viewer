@@ -1,6 +1,6 @@
 <?php
 
-namespace Opcodes\LogViewer;
+namespace WgVn\TrailLogViewer;
 
 use Composer\InstalledVersions;
 use GuzzleHttp\Client;
@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
-use Opcodes\LogViewer\Readers\IndexedLogReader;
-use Opcodes\LogViewer\Readers\LogReaderInterface;
-use Opcodes\LogViewer\Utils\Utils;
+use WgVn\TrailLogViewer\Readers\IndexedLogReader;
+use WgVn\TrailLogViewer\Readers\LogReaderInterface;
+use WgVn\TrailLogViewer\Utils\Utils;
 
 class LogViewerService
 {
@@ -416,7 +416,7 @@ class LogViewerService
         }
 
         if (class_exists(InstalledVersions::class)) {
-            return InstalledVersions::getPrettyVersion('opcodesio/log-viewer') ?? 'dev-main';
+            return InstalledVersions::getPrettyVersion('wg-vn/trail-log-viewer') ?? 'dev-main';
         } else {
             $composerJson = json_decode(file_get_contents(__DIR__.'/../composer.json'), true);
 

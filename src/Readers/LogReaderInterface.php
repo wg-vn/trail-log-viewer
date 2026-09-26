@@ -1,10 +1,10 @@
 <?php
 
-namespace Opcodes\LogViewer\Readers;
+namespace WgVn\TrailLogViewer\Readers;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Opcodes\LogViewer\LogFile;
-use Opcodes\LogViewer\Logs\Log;
+use WgVn\TrailLogViewer\LogFile;
+use WgVn\TrailLogViewer\Logs\Log;
 
 interface LogReaderInterface
 {

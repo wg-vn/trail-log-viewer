@@ -1,9 +1,7 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
 
-export const useSearchStore = defineStore({
-  id: 'search',
-
+export const useSearchStore = defineStore('search', {
   state: () => ({
     query: '',
     searchMoreRoute: null,

@@ -1,10 +1,10 @@
 <?php
 
-namespace Opcodes\LogViewer\Http\Resources;
+namespace WgVn\TrailLogViewer\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Opcodes\LogViewer\LogLevels\LevelInterface;
+use WgVn\TrailLogViewer\LogLevels\LevelInterface;
 
 /**
  * @property-read LevelInterface $level

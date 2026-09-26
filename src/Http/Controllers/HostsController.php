@@ -1,9 +1,9 @@
 <?php
 
-namespace Opcodes\LogViewer\Http\Controllers;
+namespace WgVn\TrailLogViewer\Http\Controllers;
 
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\Http\Resources\LogViewerHostResource;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\Http\Resources\LogViewerHostResource;
 
 class HostsController
 {

@@ -10,7 +10,7 @@
     @if ($assetsPublished)
         <link rel="shortcut icon" href="{{ asset(mix('img/log-viewer-32.png', config('log-viewer.assets_path'))) }}">
     @else
-        {!! \Opcodes\LogViewer\Facades\LogViewer::favicon() !!}
+        {!! \WgVn\TrailLogViewer\Facades\LogViewer::favicon() !!}
     @endif
 
     <title>Log Viewer{{ config('app.name') ? ' - ' . config('app.name') : '' }}</title>
@@ -19,7 +19,7 @@
     @if ($assetsPublished)
         <link href="{{ asset(mix('app.css', config('log-viewer.assets_path'))) }}" rel="stylesheet" onerror="alert('app.css failed to load. Please refresh the page, re-publish Log Viewer assets, or fix routing for vendor assets.')">
     @else
-        {!! \Opcodes\LogViewer\Facades\LogViewer::css() !!}
+        {!! \WgVn\TrailLogViewer\Facades\LogViewer::css() !!}
     @endif
 </head>
 
@@ -38,7 +38,7 @@
 @if ($assetsPublished)
     <script src="{{ asset(mix('app.js', config('log-viewer.assets_path'))) }}" onerror="alert('app.js failed to load. Please refresh the page, re-publish Log Viewer assets, or fix routing for vendor assets.')"></script>
 @else
-    {!! \Opcodes\LogViewer\Facades\LogViewer::js() !!}
+    {!! \WgVn\TrailLogViewer\Facades\LogViewer::js() !!}
 @endif
 </body>
 </html>

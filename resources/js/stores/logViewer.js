@@ -23,9 +23,7 @@ const defaultColumns = [
 
 const shouldUseLocalStorage = window.LogViewer?.defaults?.use_local_storage ?? true;
 
-export const useLogViewerStore = defineStore({
-  id: 'logViewer',
-
+export const useLogViewerStore = defineStore('logViewer', {
   state: () => ({
     theme: shouldUseLocalStorage 
       ? useLocalStorage('logViewerTheme', window.LogViewer?.defaults?.theme || Theme.System) 

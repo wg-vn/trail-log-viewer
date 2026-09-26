@@ -1,6 +1,6 @@
 <?php
 
-namespace Opcodes\LogViewer\Http\Middleware;
+namespace WgVn\TrailLogViewer\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;

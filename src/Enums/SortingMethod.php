@@ -1,6 +1,6 @@
 <?php
 
-namespace Opcodes\LogViewer\Enums;
+namespace WgVn\TrailLogViewer\Enums;
 
 class SortingMethod
 {

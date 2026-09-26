@@ -1,6 +1,6 @@
 <?php
 
-namespace Opcodes\LogViewer\Logs;
+namespace WgVn\TrailLogViewer\Logs;
 
 class PhpFpmLog extends Log
 {

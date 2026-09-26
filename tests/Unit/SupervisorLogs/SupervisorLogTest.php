@@ -1,7 +1,7 @@
 <?php
 
-use Opcodes\LogViewer\LogFile;
-use Opcodes\LogViewer\Logs\LogType;
+use WgVn\TrailLogViewer\LogFile;
+use WgVn\TrailLogViewer\Logs\LogType;
 
 it('can process Supervisor logs', function () {
     $file = generateLogFile('supervisor.log', <<<'LOG'

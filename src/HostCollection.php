@@ -1,6 +1,6 @@
 <?php
 
-namespace Opcodes\LogViewer;
+namespace WgVn\TrailLogViewer;
 
 use Illuminate\Support\Collection;
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Cache\FileStore;
 use Illuminate\Cache\RedisStore;
-use Opcodes\LogViewer\Facades\Cache;
+use WgVn\TrailLogViewer\Facades\Cache;
 
 beforeEach(function () {
     config(['log-viewer.cache_driver' => null]);

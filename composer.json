@@ -1,56 +1,65 @@
 {
-    "name": "opcodesio/log-viewer",
+    "name": "wg-vn/trail-log-viewer",
     "description": "Fast and easy-to-use log viewer for your Laravel application",
     "keywords": [
-        "arukompas",
-        "opcodesio",
+        "wg-vn",
         "laravel",
         "logs",
         "log viewer",
         "better-log-viewer"
     ],
-    "homepage": "https://github.com/opcodesio/log-viewer",
+    "homepage": "https://github.com/wg-vn/trail-log-viewer",
     "license": "MIT",
     "authors": [
         {
-            "name": "Arunas Skirius",
-            "email": "arukomp@gmail.com",
+            "name": "wg-vn",
+            "email": "wgarcia@vestednetworks.com",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.0",
-        "illuminate/contracts": "^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
-        "opcodesio/mail-parser": "^0.2.3"
+        "php": "^8.5",
+        "illuminate/contracts": "^12.0|^13.0",
+        "opcodesio/mail-parser": "^0.2.4"
     },
     "require-dev": {
-        "guzzlehttp/guzzle": "^7.2",
-        "itsgoingd/clockwork": "^5.1",
-        "laravel/pint": "^1.0",
-        "nunomaduro/collision": "^7.0|^8.0",
-        "orchestra/testbench": "^7.6|^8.0|^9.5|^10.0|^11.0",
-        "pestphp/pest": "^2.0|^3.7|^4.4",
-        "pestphp/pest-plugin-laravel": "^2.0|^3.1|^4.1",
+        "guzzlehttp/guzzle": "^7.10|^8.2",
+        "itsgoingd/clockwork": "^5.3",
+        "laravel/pint": "^1.32",
+        "nunomaduro/collision": "^8.9",
+        "orchestra/testbench": "^10.12|^11.3",
+        "pestphp/pest": "^4.7|^5.2",
+        "pestphp/pest-plugin-laravel": "^4.1|^5.0",
         "spatie/test-time": "^1.3"
     },
     "suggest": {
-        "guzzlehttp/guzzle": "Required for multi-host support. ^7.2"
+        "guzzlehttp/guzzle": "Required for multi-host support. ^7.10|^8.2"
     },
     "autoload": {
         "psr-4": {
-            "Opcodes\\LogViewer\\": "src"
+            "WgVn\\TrailLogViewer\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Opcodes\\LogViewer\\Tests\\": "tests"
+            "WgVn\\TrailLogViewer\\Tests\\": "tests",
+            "Workbench\\App\\": "workbench/app/"
         }
     },
     "scripts": {
         "analyse": "echo \"Static analysis not configured yet.\" && exit 0",
-        "test": "vendor/bin/pest --order-by random",
+        "test": [
+            "@php vendor/bin/testbench package:purge-skeleton --ansi",
+            "vendor/bin/pest --order-by random --no-coverage"
+        ],
         "test-coverage": "echo \"Test coverage not configured yet.\" && exit 0",
-        "format": "vendor/bin/pint"
+        "format": "vendor/bin/pint",
+        "demo": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php vendor/bin/testbench package:purge-skeleton --ansi",
+            "@php vendor/bin/testbench workbench:build --ansi",
+            "@php vendor/bin/testbench serve --ansi"
+        ]
     },
     "config": {
         "sort-packages": true,
@@ -61,10 +70,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Opcodes\\LogViewer\\LogViewerServiceProvider"
+                "WgVn\\TrailLogViewer\\LogViewerServiceProvider"
             ],
             "aliases": {
-                "LogViewer": "Opcodes\\LogViewer\\Facades\\LogViewer"
+                "LogViewer": "WgVn\\TrailLogViewer\\Facades\\LogViewer"
             }
         }
     },

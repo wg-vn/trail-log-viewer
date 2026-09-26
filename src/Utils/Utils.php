@@ -1,8 +1,8 @@
 <?php
 
-namespace Opcodes\LogViewer\Utils;
+namespace WgVn\TrailLogViewer\Utils;
 
-use Opcodes\LogViewer\Exceptions\InvalidRegularExpression;
+use WgVn\TrailLogViewer\Exceptions\InvalidRegularExpression;
 
 class Utils
 {

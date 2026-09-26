@@ -1,8 +1,8 @@
 <?php
 
-use Opcodes\LogViewer\LogFile;
-use Opcodes\LogViewer\LogLevels\HorizonStatusLevel;
-use Opcodes\LogViewer\Logs\LogType;
+use WgVn\TrailLogViewer\LogFile;
+use WgVn\TrailLogViewer\LogLevels\HorizonStatusLevel;
+use WgVn\TrailLogViewer\Logs\LogType;
 
 it('can process new Horizon logs', function () {
     $file = generateLogFile('horizon_new.log', content: <<<EOF

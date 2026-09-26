@@ -1,9 +1,7 @@
 import { defineStore } from 'pinia';
 import { useLocalStorage } from '@vueuse/core';
 
-export const useSeverityStore = defineStore({
-  id: 'severity',
-
+export const useSeverityStore = defineStore('severity', {
   state: () => ({
     allLevels: [],  // should be updated by the backend
     excludedLevels: useLocalStorage('excludedLevels', []),

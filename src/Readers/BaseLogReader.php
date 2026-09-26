@@ -1,11 +1,11 @@
 <?php
 
-namespace Opcodes\LogViewer\Readers;
+namespace WgVn\TrailLogViewer\Readers;
 
-use Opcodes\LogViewer\Concerns;
-use Opcodes\LogViewer\LogFile;
-use Opcodes\LogViewer\LogLevels\LevelInterface;
-use Opcodes\LogViewer\Logs\Log;
+use WgVn\TrailLogViewer\Concerns;
+use WgVn\TrailLogViewer\LogFile;
+use WgVn\TrailLogViewer\LogLevels\LevelInterface;
+use WgVn\TrailLogViewer\Logs\Log;
 
 abstract class BaseLogReader
 {

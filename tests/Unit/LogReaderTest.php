@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\File;
-use Opcodes\LogViewer\Exceptions\CannotOpenFileException;
-use Opcodes\LogViewer\Facades\Cache as LogViewerCache;
-use Opcodes\LogViewer\LogFile;
-use Opcodes\LogViewer\Readers\IndexedLogReader;
-use Opcodes\LogViewer\Utils\GenerateCacheKey;
 use Spatie\TestTime\TestTime;
+use WgVn\TrailLogViewer\Exceptions\CannotOpenFileException;
+use WgVn\TrailLogViewer\Facades\Cache as LogViewerCache;
+use WgVn\TrailLogViewer\LogFile;
+use WgVn\TrailLogViewer\Readers\IndexedLogReader;
+use WgVn\TrailLogViewer\Utils\GenerateCacheKey;
 
 beforeEach(function () {
     $this->file = generateLogFile();

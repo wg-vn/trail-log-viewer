@@ -1,9 +1,9 @@
 <?php
 
-namespace Opcodes\LogViewer\Concerns\LogReader;
+namespace WgVn\TrailLogViewer\Concerns\LogReader;
 
-use Opcodes\LogViewer\Exceptions\CannotCloseFileException;
-use Opcodes\LogViewer\Exceptions\CannotOpenFileException;
+use WgVn\TrailLogViewer\Exceptions\CannotCloseFileException;
+use WgVn\TrailLogViewer\Exceptions\CannotOpenFileException;
 
 trait KeepsFileHandle
 {

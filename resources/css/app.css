@@ -1,20 +1,73 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@import './loader.scss';
+@import 'tailwindcss' source(none);
+@import './loader.css' layer(utilities);
+
+@source '../js';
+@source '../views';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans:
+    ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+
+  --color-brand-50: #f0f9ff;
+  --color-brand-100: #e0f2fe;
+  --color-brand-200: #bae6fd;
+  --color-brand-300: #7dd3fc;
+  --color-brand-400: #38bdf8;
+  --color-brand-500: #0ea5e9;
+  --color-brand-600: #0284c7;
+  --color-brand-700: #0369a1;
+  --color-brand-800: #075985;
+  --color-brand-900: #0c4a6e;
+  --color-brand-950: #082f49;
+
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f4f4f5;
+  --color-gray-200: #e4e4e7;
+  --color-gray-300: #d4d4d8;
+  --color-gray-400: #a1a1aa;
+  --color-gray-500: #71717a;
+  --color-gray-600: #52525b;
+  --color-gray-700: #3f3f46;
+  --color-gray-800: #27272a;
+  --color-gray-900: #18181b;
+  --color-gray-950: #09090b;
+
+  --width-88: 22rem;
+
+  --padding-88: 22rem;
+
+  --transition-property-width: width;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  /* Tailwind CSS v4 also stopped giving buttons `cursor: pointer`. */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
 
 html.dark {
     color-scheme: dark
-}
-
-#bmc-wbtn {
-    height: 48px !important;
-    width: 48px !important;
-
-    &>img {
-        height: 32px !important;
-        width: 32px !important;
-    }
 }
 
 .log-levels-selector {
@@ -22,7 +75,7 @@ html.dark {
         @apply whitespace-nowrap;
 
         &:focus {
-            @apply outline-none ring-2 ring-brand-500 dark:ring-brand-700;
+            @apply outline-hidden ring-2 ring-brand-500 dark:ring-brand-700;
         }
 
         & > svg {
@@ -89,7 +142,7 @@ html.dark {
 
     &.success, &.notice {
         &:hover > td, &.active > td, &:focus-within > td {
-            @apply bg-emerald-50 dark:bg-emerald-800 dark:bg-opacity-40;
+            @apply bg-emerald-50 dark:bg-emerald-800/40;
         }
         .log-level-indicator {
             @apply bg-emerald-700 dark:bg-emerald-500;
@@ -101,7 +154,7 @@ html.dark {
 
     &.info {
         &:hover > td, &.active > td, &:focus-within > td {
-            @apply bg-sky-50 dark:bg-sky-800 dark:bg-opacity-40;
+            @apply bg-sky-50 dark:bg-sky-800/40;
         }
         .log-level-indicator {
             @apply bg-sky-700 dark:bg-sky-500;
@@ -113,7 +166,7 @@ html.dark {
 
     &.warning {
         &:hover > td, &.active > td, &:focus-within > td {
-            @apply bg-amber-50 dark:bg-amber-800 dark:bg-opacity-40;
+            @apply bg-amber-50 dark:bg-amber-800/40;
         }
         .log-level-indicator {
             @apply bg-amber-700 dark:bg-amber-400;
@@ -125,7 +178,7 @@ html.dark {
 
     &.danger {
         &:hover > td, &.active > td, &:focus-within > td {
-            @apply bg-rose-50 dark:bg-rose-800 dark:bg-opacity-40;
+            @apply bg-rose-50 dark:bg-rose-800/40;
         }
         .log-level-indicator {
             @apply bg-rose-700 dark:bg-rose-400;
@@ -137,7 +190,7 @@ html.dark {
 
     &.none {
         &:hover > td, &.active > td, &:focus-within > td {
-            @apply bg-gray-50 dark:bg-gray-800 dark:bg-opacity-40;
+            @apply bg-gray-50 dark:bg-gray-800/40;
         }
         .log-level-indicator {
             @apply bg-gray-700 dark:bg-gray-400;
@@ -158,11 +211,11 @@ html.dark {
 
     &.success, &.notice {
         @apply border border-emerald-200 bg-emerald-50 text-gray-600
-          dark:border-emerald-800 dark:bg-emerald-900 dark:bg-opacity-40 dark:text-gray-400;
+          dark:border-emerald-800 dark:bg-emerald-900/40 dark:text-gray-400;
 
         &:hover {
             @apply bg-emerald-100
-              dark:bg-emerald-900 dark:bg-opacity-75;
+              dark:bg-emerald-900/75;
         }
 
         .checkmark {
@@ -190,11 +243,11 @@ html.dark {
 
     &.info {
         @apply border border-sky-200 bg-sky-50 text-gray-600
-          dark:border-sky-800 dark:bg-sky-900 dark:bg-opacity-40 dark:text-gray-400;
+          dark:border-sky-800 dark:bg-sky-900/40 dark:text-gray-400;
 
         &:hover {
             @apply bg-sky-100
-              dark:bg-sky-900 dark:bg-opacity-75;
+              dark:bg-sky-900/75;
         }
 
         .checkmark {
@@ -223,11 +276,11 @@ html.dark {
 
     &.warning {
         @apply border border-amber-200 bg-amber-50 text-gray-600
-          dark:border-amber-800 dark:bg-amber-900 dark:bg-opacity-40 dark:text-gray-400;
+          dark:border-amber-800 dark:bg-amber-900/40 dark:text-gray-400;
 
         &:hover {
             @apply bg-amber-100
-              dark:bg-amber-900 dark:bg-opacity-75;
+              dark:bg-amber-900/75;
         }
 
         & .checkmark {
@@ -256,11 +309,11 @@ html.dark {
 
     &.danger {
         @apply border border-rose-200 bg-rose-50 text-gray-600
-          dark:border-rose-800 dark:bg-rose-900 dark:bg-opacity-40 dark:text-gray-400;
+          dark:border-rose-800 dark:bg-rose-900/40 dark:text-gray-400;
 
         &:hover {
             @apply bg-rose-100
-              dark:bg-rose-900 dark:bg-opacity-75;
+              dark:bg-rose-900/75;
         }
 
         & .checkmark {
@@ -289,11 +342,11 @@ html.dark {
 
     &.none {
         @apply border border-gray-200 bg-gray-100 text-gray-600
-          dark:border-gray-800 dark:bg-gray-900 dark:bg-opacity-40 dark:text-gray-400;
+          dark:border-gray-800 dark:bg-gray-900/40 dark:text-gray-400;
 
         &:hover {
             @apply bg-gray-50
-              dark:bg-gray-900 dark:bg-opacity-75;
+              dark:bg-gray-900/75;
         }
 
         & .checkmark {
@@ -340,7 +393,7 @@ html.dark {
         }
 
         .mail-preview-attributes {
-            @apply text-xs lg:text-sm w-full border border-brand-100 dark:border-brand-800 rounded bg-brand-50/30 dark:bg-brand-900/20 overflow-x-auto lg:overflow-hidden mb-4 lg:mb-6;
+            @apply text-xs lg:text-sm w-full border border-brand-100 dark:border-brand-800 rounded-sm bg-brand-50/30 dark:bg-brand-900/20 overflow-x-auto lg:overflow-hidden mb-4 lg:mb-6;
 
             table {
                 @apply w-full;
@@ -363,15 +416,15 @@ html.dark {
         }
 
         .mail-preview-html {
-            @apply w-full border border-gray-200 dark:border-gray-700 rounded bg-gray-50 dark:bg-gray-900 overflow-auto mb-4 lg:mb-6;
+            @apply w-full border border-gray-200 dark:border-gray-700 rounded-sm bg-gray-50 dark:bg-gray-900 overflow-auto mb-4 lg:mb-6;
         }
 
         .mail-preview-text {
-            @apply w-full border border-gray-200 dark:border-gray-700 rounded bg-gray-50 dark:bg-gray-900 text-sm whitespace-pre-wrap mb-4 lg:mb-6 p-4;
+            @apply w-full border border-gray-200 dark:border-gray-700 rounded-sm bg-gray-50 dark:bg-gray-900 text-sm whitespace-pre-wrap mb-4 lg:mb-6 p-4;
         }
 
         .mail-attachment-button {
-            @apply flex items-center justify-between px-2 py-1 lg:px-4 lg:py-2 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded;
+            @apply flex items-center justify-between px-2 py-1 lg:px-4 lg:py-2 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-sm;
             max-width: 460px;
 
             &:not(:last-child) {
@@ -398,9 +451,9 @@ html.dark {
         }
 
         .log-link {
-            @apply flex items-center justify-end w-full -my-0.5 py-0.5 pl-1 rounded;
+            @apply flex items-center justify-end w-full -my-0.5 py-0.5 pl-1 rounded-sm;
 
-            @screen sm {
+            @media (width >= theme(--breakpoint-sm)) {
                 min-width: 64px;
             }
 
@@ -409,12 +462,12 @@ html.dark {
             }
 
             &:focus {
-                @apply outline-none ring-2 ring-brand-500 dark:ring-brand-400;
+                @apply outline-hidden ring-2 ring-brand-500 dark:ring-brand-400;
             }
         }
 
         code, mark {
-            @apply bg-amber-200 text-gray-900 px-1 py-0.5 rounded
+            @apply bg-amber-200 text-gray-900 px-1 py-0.5 rounded-sm
               dark:bg-yellow-800 dark:text-white;
         }
     }
@@ -433,7 +486,7 @@ html.dark {
                   dark:text-gray-300 border-gray-400;
             }
             &:focus {
-                @apply rounded-md outline-none ring-2 ring-brand-500 dark:ring-brand-400;
+                @apply rounded-md outline-hidden ring-2 ring-brand-500 dark:ring-brand-400;
             }
             svg {
                 @apply mx-3 h-5 w-5 text-current;
@@ -451,7 +504,7 @@ html.dark {
                   dark:text-gray-300 border-gray-400;
             }
             &:focus {
-                @apply rounded-md outline-none ring-2 ring-brand-500 dark:ring-brand-400;
+                @apply rounded-md outline-hidden ring-2 ring-brand-500 dark:ring-brand-400;
             }
             svg {
                 @apply mx-3 h-5 w-5 text-current;
@@ -470,7 +523,7 @@ html.dark {
             @apply border-t-2 pt-3 px-4 inline-flex items-center text-sm font-medium;
 
             &:focus {
-                @apply rounded-md outline-none ring-2 ring-brand-500 dark:ring-brand-400;
+                @apply rounded-md outline-hidden ring-2 ring-brand-500 dark:ring-brand-400;
             }
         }
     }
@@ -484,9 +537,9 @@ html.dark {
     }
 
     input {
-        @apply w-full px-1 py-1 rounded flex-1 bg-inherit ring-2 ring-transparent transition duration-200;
+        @apply w-full px-1 py-1 rounded-sm flex-1 bg-inherit ring-2 ring-transparent transition duration-200;
         &:focus {
-            @apply outline-none ring-brand-500 dark:ring-brand-700 border-transparent;
+            @apply outline-hidden ring-brand-500 dark:ring-brand-700 border-transparent;
         }
     }
     &.has-error {
@@ -494,32 +547,32 @@ html.dark {
     }
     .submit-search {
         button {
-            @apply flex rounded-r items-center bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-2 transition duration-200;
+            @apply flex rounded-r-sm items-center bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-2 transition duration-200;
             &:hover { @apply bg-gray-200 dark:bg-gray-600; }
-            &:focus { @apply outline-none ring-2 ring-brand-500 dark:ring-brand-700; }
+            &:focus { @apply outline-hidden ring-2 ring-brand-500 dark:ring-brand-700; }
             & > svg { @apply h-5 w-5 ml-1 opacity-75; }
         }
     }
     .clear-search {
         @apply absolute right-0 top-0;
         button {
-            @apply rounded text-gray-400 dark:text-gray-500 p-1 transition duration-200;
+            @apply rounded-sm text-gray-400 dark:text-gray-500 p-1 transition duration-200;
             &:hover { @apply text-gray-600 dark:text-gray-400; }
-            &:focus { @apply outline-none ring-2 ring-brand-500 dark:ring-brand-700; }
+            &:focus { @apply outline-hidden ring-2 ring-brand-500 dark:ring-brand-700; }
             & > svg { @apply h-5 w-5; }
         }
     }
 }
 
 .search-progress-bar {
-    @apply absolute top-1 bg-brand-500 dark:bg-brand-600 h-0.5 rounded transition-width ease-linear duration-300;
+    @apply absolute top-1 bg-brand-500 dark:bg-brand-600 h-0.5 rounded-sm transition-width ease-linear duration-300;
 }
 
 .dropdown {
     @apply absolute top-full z-40 right-1 -mt-1 overflow-hidden text-gray-900 dark:text-gray-200 rounded-md bg-white border-gray-200 dark:bg-gray-800 border dark:border-gray-700 shadow-md;
 
     &:focus {
-        @apply outline-none ring-1 ring-brand-500 ring-opacity-50 dark:ring-brand-700 dark:ring-opacity-50;
+        @apply outline-hidden ring-1 ring-brand-500/50 dark:ring-brand-700/50;
     }
 
     & {
@@ -550,8 +603,8 @@ html.dark {
         & > svg {
             @apply w-4 h-4 mr-3 text-gray-400;
             &.spin {
-                // Spinner is slightly dimmer by default, especially because it's constantly spinning
-                // and it's also a little smaller in size
+                /* Spinner is slightly dimmer by default, especially because it's constantly spinning */
+                /* and it's also a little smaller in size */
                 @apply text-gray-600;
             }
         }
@@ -577,8 +630,8 @@ html.dark {
     }
 }
 
-// Dark border:         border-brand-800
-// Dark border (hover): border-brand-700
+/* Dark border:         border-brand-800 */
+/* Dark border (hover): border-brand-700 */
 
 .file-list {
     @apply relative h-full overflow-y-auto pb-4 px-3 md:pr-0 md:pl-0;
@@ -615,7 +668,7 @@ html.dark {
         }
 
         &.active .file-item {
-            @apply border-brand-500 dark:border-brand-900 bg-brand-50 dark:bg-brand-900 dark:bg-opacity-40;
+            @apply border-brand-500 dark:border-brand-900 bg-brand-50 dark:bg-brand-900/40;
         }
 
         &.active-folder .file-item {
@@ -656,7 +709,7 @@ html.dark {
     }
 
     &:focus {
-        @apply outline-none ring-2 ring-brand-500 dark:ring-brand-700;
+        @apply outline-hidden ring-2 ring-brand-500 dark:ring-brand-700;
     }
 }
 
@@ -665,8 +718,8 @@ button.button, a.button {
     & > svg {
         @apply w-4 h-4 text-gray-600 dark:text-gray-400;
         &.spin {
-            // Spinner is slightly dimmer by default, especially because it's constantly spinning
-            // and it's also a little smaller in size
+            /* Spinner is slightly dimmer by default, especially because it's constantly spinning */
+            /* and it's also a little smaller in size */
             @apply text-gray-600;
         }
     }
@@ -676,7 +729,7 @@ button.button:hover, a.button:hover {
 }
 
 .select {
-    @apply bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 rounded font-normal outline-none px-1 -my-0.5 py-0.5;
+    @apply bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 rounded-sm font-normal outline-hidden px-1 -my-0.5 py-0.5;
 }
 
 .select:hover {
@@ -691,6 +744,6 @@ button.button:hover, a.button:hover {
     @apply text-sm flex items-center justify-start mb-3 w-full text-gray-600 dark:text-gray-300;
 
     .shortcut {
-        @apply font-mono text-base dark:text-gray-300 inline-flex w-6 h-6 mr-2 items-center justify-center rounded border border-gray-400 dark:border-gray-500 ring-1 ring-gray-100 dark:ring-gray-900;
+        @apply font-mono text-base dark:text-gray-300 inline-flex w-6 h-6 mr-2 items-center justify-center rounded-sm border border-gray-400 dark:border-gray-500 ring-1 ring-gray-100 dark:ring-gray-900;
     }
 }

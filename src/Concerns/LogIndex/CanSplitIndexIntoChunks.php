@@ -1,9 +1,9 @@
 <?php
 
-namespace Opcodes\LogViewer\Concerns\LogIndex;
+namespace WgVn\TrailLogViewer\Concerns\LogIndex;
 
-use Opcodes\LogViewer\Exceptions\InvalidChunkSizeException;
-use Opcodes\LogViewer\LogIndexChunk;
+use WgVn\TrailLogViewer\Exceptions\InvalidChunkSizeException;
+use WgVn\TrailLogViewer\LogIndexChunk;
 
 trait CanSplitIndexIntoChunks
 {

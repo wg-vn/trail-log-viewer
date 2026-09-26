@@ -1,11 +1,11 @@
 <?php
 
-namespace Opcodes\LogViewer\Concerns\LogFile;
+namespace WgVn\TrailLogViewer\Concerns\LogFile;
 
 use Carbon\CarbonInterface;
-use Opcodes\LogViewer\Facades\Cache;
-use Opcodes\LogViewer\Utils\GenerateCacheKey;
-use Opcodes\LogViewer\Utils\Utils;
+use WgVn\TrailLogViewer\Facades\Cache;
+use WgVn\TrailLogViewer\Utils\GenerateCacheKey;
+use WgVn\TrailLogViewer\Utils\Utils;
 
 trait CanCacheData
 {

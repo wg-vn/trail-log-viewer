@@ -1,17 +1,17 @@
 <?php
 
-namespace Opcodes\LogViewer\Facades;
+namespace WgVn\TrailLogViewer\Facades;
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\HtmlString;
-use Opcodes\LogViewer\Host;
-use Opcodes\LogViewer\HostCollection;
-use Opcodes\LogViewer\LogFile;
-use Opcodes\LogViewer\LogFileCollection;
-use Opcodes\LogViewer\LogFolder;
-use Opcodes\LogViewer\LogFolderCollection;
-use Opcodes\LogViewer\LogViewerService;
-use Opcodes\LogViewer\Readers\LogReaderInterface;
+use WgVn\TrailLogViewer\Host;
+use WgVn\TrailLogViewer\HostCollection;
+use WgVn\TrailLogViewer\LogFile;
+use WgVn\TrailLogViewer\LogFileCollection;
+use WgVn\TrailLogViewer\LogFolder;
+use WgVn\TrailLogViewer\LogFolderCollection;
+use WgVn\TrailLogViewer\LogViewerService;
+use WgVn\TrailLogViewer\Readers\LogReaderInterface;
 
 /**
  * @see LogViewerService

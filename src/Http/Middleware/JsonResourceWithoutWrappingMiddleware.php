@@ -1,6 +1,6 @@
 <?php
 
-namespace Opcodes\LogViewer\Http\Middleware;
+namespace WgVn\TrailLogViewer\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;

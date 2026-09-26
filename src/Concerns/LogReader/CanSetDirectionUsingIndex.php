@@ -1,8 +1,8 @@
 <?php
 
-namespace Opcodes\LogViewer\Concerns\LogReader;
+namespace WgVn\TrailLogViewer\Concerns\LogReader;
 
-use Opcodes\LogViewer\Direction;
+use WgVn\TrailLogViewer\Direction;
 
 trait CanSetDirectionUsingIndex
 {

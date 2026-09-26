@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\HtmlString;
-use Opcodes\LogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\Facades\LogViewer;
 
 beforeEach(function () {
     // Ensure the source manifest exists

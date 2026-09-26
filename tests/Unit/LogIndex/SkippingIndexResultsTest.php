@@ -1,7 +1,7 @@
 <?php
 
-use Opcodes\LogViewer\Facades\Cache;
-use Opcodes\LogViewer\LogFile;
+use WgVn\TrailLogViewer\Facades\Cache;
+use WgVn\TrailLogViewer\LogFile;
 
 it('can skip a number of entries in the index', function () {
     $timestamp = now()->subHour()->timestamp;
@@ -64,7 +64,7 @@ it('works across multiple chunks', function () {
 
 test('get() skips unnecessary chunks by not loading them into memory', function () {
     $timestamp = now()->subHour()->timestamp;
-    $logIndex = Mockery::mock('Opcodes\LogViewer\LogIndex[getChunk]', [
+    $logIndex = Mockery::mock('WgVn\TrailLogViewer\LogIndex[getChunk]', [
         new LogFile('laravel.log', 'laravel.log'),
     ])->makePartial();
     $logIndex->setMaxChunkSize(2);
@@ -94,7 +94,7 @@ test('get() skips unnecessary chunks by not loading them into memory', function 
 
 test('getFlatIndex() skips unnecessary chunks by not loading them into memory', function () {
     $timestamp = now()->subHour()->timestamp;
-    $logIndex = Mockery::mock('Opcodes\LogViewer\LogIndex[getChunk]', [
+    $logIndex = Mockery::mock('WgVn\TrailLogViewer\LogIndex[getChunk]', [
         new LogFile('laravel.log', 'laravel.log'),
     ])->makePartial();
     $logIndex->setMaxChunkSize(2);

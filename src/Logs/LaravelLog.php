@@ -1,13 +1,13 @@
 <?php
 
-namespace Opcodes\LogViewer\Logs;
+namespace WgVn\TrailLogViewer\Logs;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\LogLevels\LaravelLogLevel;
-use Opcodes\LogViewer\Utils\Utils;
 use Opcodes\MailParser\Message;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\LogLevels\LaravelLogLevel;
+use WgVn\TrailLogViewer\Utils\Utils;
 
 class LaravelLog extends Log
 {

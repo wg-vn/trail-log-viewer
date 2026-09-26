@@ -1,16 +1,16 @@
 <?php
 
-namespace Opcodes\LogViewer;
+namespace WgVn\TrailLogViewer;
 
 use Illuminate\Support\Arr;
-use Opcodes\LogViewer\Events\LogFileDeleted;
-use Opcodes\LogViewer\Exceptions\CannotOpenFileException;
-use Opcodes\LogViewer\Exceptions\InvalidRegularExpression;
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\Logs\LogType;
-use Opcodes\LogViewer\Readers\LogReaderInterface;
-use Opcodes\LogViewer\Utils\Utils;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use WgVn\TrailLogViewer\Events\LogFileDeleted;
+use WgVn\TrailLogViewer\Exceptions\CannotOpenFileException;
+use WgVn\TrailLogViewer\Exceptions\InvalidRegularExpression;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\Logs\LogType;
+use WgVn\TrailLogViewer\Readers\LogReaderInterface;
+use WgVn\TrailLogViewer\Utils\Utils;
 
 class LogFile
 {

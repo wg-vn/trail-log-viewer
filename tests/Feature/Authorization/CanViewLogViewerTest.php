@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\LogViewerServiceProvider;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\LogViewerServiceProvider;
 
 use function Pest\Laravel\get;
 use function Pest\Laravel\getJson;

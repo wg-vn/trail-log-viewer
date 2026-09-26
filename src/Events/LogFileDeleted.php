@@ -1,9 +1,9 @@
 <?php
 
-namespace Opcodes\LogViewer\Events;
+namespace WgVn\TrailLogViewer\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
-use Opcodes\LogViewer\LogFile;
+use WgVn\TrailLogViewer\LogFile;
 
 class LogFileDeleted
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Opcodes\LogViewer\Exceptions;
+namespace WgVn\TrailLogViewer\Exceptions;
 
 use Exception;
 

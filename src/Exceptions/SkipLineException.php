@@ -1,5 +1,5 @@
 <?php
 
-namespace Opcodes\LogViewer\Exceptions;
+namespace WgVn\TrailLogViewer\Exceptions;
 
 class SkipLineException extends \Exception {}

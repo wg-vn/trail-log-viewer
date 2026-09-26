@@ -1,7 +1,7 @@
 <?php
 
-use Opcodes\LogViewer\LogFile;
-use Opcodes\LogViewer\Logs\HttpNginxErrorLog;
+use WgVn\TrailLogViewer\LogFile;
+use WgVn\TrailLogViewer\Logs\HttpNginxErrorLog;
 
 it('can parse a full Nginx error log entry', function () {
     $line = '2019/07/11 07:19:30 [error] 934#934: *18897816 open() "/local/nginx/static/ads.txt" failed (2: No such file or directory), client: 85.195.82.90, server: app.digitale-sammlungen.de, request: "GET /ads.txt HTTP/1.1", host: "app.digitale-sammlungen.de"';

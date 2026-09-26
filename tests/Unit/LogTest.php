@@ -1,7 +1,7 @@
 <?php
 
 use Carbon\Carbon;
-use Opcodes\LogViewer\Logs\LaravelLog;
+use WgVn\TrailLogViewer\Logs\LaravelLog;
 
 use function PHPUnit\Framework\assertEquals;
 

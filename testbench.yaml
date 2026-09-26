@@ -1,0 +1,22 @@
+laravel: '@testbench'
+
+providers:
+  - WgVn\TrailLogViewer\LogViewerServiceProvider
+  - Workbench\App\Providers\WorkbenchServiceProvider
+
+env:
+  - CACHE_STORE=file
+
+workbench:
+  start: '/log-viewer'
+  install: false
+  health: false
+  discovers:
+    web: false
+    api: false
+    commands: true
+    components: false
+    factories: false
+    views: false
+  build:
+    - demo-prepare

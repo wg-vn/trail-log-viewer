@@ -1,11 +1,11 @@
 <?php
 
-use Opcodes\LogViewer\Enums\SortingMethod;
-use Opcodes\LogViewer\Enums\SortingOrder;
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\LogFile;
-use Opcodes\LogViewer\LogFileCollection;
-use Opcodes\LogViewer\LogFolder;
+use WgVn\TrailLogViewer\Enums\SortingMethod;
+use WgVn\TrailLogViewer\Enums\SortingOrder;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\LogFile;
+use WgVn\TrailLogViewer\LogFileCollection;
+use WgVn\TrailLogViewer\LogFolder;
 
 test('LogViewer::getFiles() returns a LogFileCollection', function () {
     expect(LogViewer::getFiles())->toBeInstanceOf(LogFileCollection::class);

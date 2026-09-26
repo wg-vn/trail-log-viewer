@@ -1,11 +1,11 @@
 <?php
 
-namespace Opcodes\LogViewer\Logs;
+namespace WgVn\TrailLogViewer\Logs;
 
 use Carbon\CarbonInterface;
 use Illuminate\Support\Carbon;
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\LogLevels\NginxStatusLevel;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\LogLevels\NginxStatusLevel;
 
 class HttpNginxErrorLog extends Log
 {

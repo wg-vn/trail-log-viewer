@@ -1,6 +1,6 @@
 <?php
 
-namespace Opcodes\LogViewer\Concerns\LogFile;
+namespace WgVn\TrailLogViewer\Concerns\LogFile;
 
 trait HasMetadata
 {

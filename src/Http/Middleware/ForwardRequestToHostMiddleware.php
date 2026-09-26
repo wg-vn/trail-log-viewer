@@ -1,12 +1,12 @@
 <?php
 
-namespace Opcodes\LogViewer\Http\Middleware;
+namespace WgVn\TrailLogViewer\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use Opcodes\LogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\Facades\LogViewer;
 
 class ForwardRequestToHostMiddleware
 {

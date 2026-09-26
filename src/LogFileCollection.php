@@ -1,11 +1,11 @@
 <?php
 
-namespace Opcodes\LogViewer;
+namespace WgVn\TrailLogViewer;
 
 use Illuminate\Support\Collection;
-use Opcodes\LogViewer\Enums\SortingMethod;
-use Opcodes\LogViewer\Enums\SortingOrder;
-use Opcodes\LogViewer\Readers\MultipleLogReader;
+use WgVn\TrailLogViewer\Enums\SortingMethod;
+use WgVn\TrailLogViewer\Enums\SortingOrder;
+use WgVn\TrailLogViewer\Readers\MultipleLogReader;
 
 /**
  * @var LogFile[] $items

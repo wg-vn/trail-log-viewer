@@ -1,11 +1,11 @@
 <?php
 
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\Logs\LaravelLog;
-use Opcodes\LogViewer\Logs\LogType;
-use Opcodes\LogViewer\LogTypeRegistrar;
-use Opcodes\LogViewer\Tests\Unit\CustomLogs\CustomAccessLog;
-use Opcodes\LogViewer\Tests\Unit\CustomLogs\CustomHttpAccessLog;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\Logs\LaravelLog;
+use WgVn\TrailLogViewer\Logs\LogType;
+use WgVn\TrailLogViewer\LogTypeRegistrar;
+use WgVn\TrailLogViewer\Tests\Unit\CustomLogs\CustomAccessLog;
+use WgVn\TrailLogViewer\Tests\Unit\CustomLogs\CustomHttpAccessLog;
 
 beforeEach(function () {
     $this->logRegistrar = app(LogTypeRegistrar::class);

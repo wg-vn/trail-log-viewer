@@ -3,8 +3,8 @@
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\Host;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\Host;
 
 beforeEach(function () {
     config(['log-viewer.hosts' => [

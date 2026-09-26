@@ -1,15 +1,15 @@
 <?php
 
-namespace Opcodes\LogViewer\Http\Controllers;
+namespace WgVn\TrailLogViewer\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Opcodes\LogViewer\Exceptions\InvalidRegularExpression;
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\Http\Resources\LevelCountResource;
-use Opcodes\LogViewer\Http\Resources\LogFileResource;
-use Opcodes\LogViewer\Http\Resources\LogResource;
-use Opcodes\LogViewer\Logs\Log;
+use WgVn\TrailLogViewer\Exceptions\InvalidRegularExpression;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\Http\Resources\LevelCountResource;
+use WgVn\TrailLogViewer\Http\Resources\LogFileResource;
+use WgVn\TrailLogViewer\Http\Resources\LogResource;
+use WgVn\TrailLogViewer\Logs\Log;
 
 class LogsController
 {

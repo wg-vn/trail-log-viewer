@@ -1,11 +1,11 @@
 <?php
 
-namespace Opcodes\LogViewer\Tests;
+namespace WgVn\TrailLogViewer\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
-use Opcodes\LogViewer\LogViewerServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use WgVn\TrailLogViewer\LogViewerServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -18,7 +18,7 @@ class TestCase extends Orchestra
         }
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Opcodes\\LogViewer\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'WgVn\\TrailLogViewer\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Opcodes\LogViewer\Logs;
+namespace WgVn\TrailLogViewer\Logs;
 
-use Opcodes\LogViewer\LogLevels\RedisLogLevel;
+use WgVn\TrailLogViewer\LogLevels\RedisLogLevel;
 
 class RedisLog extends Log
 {

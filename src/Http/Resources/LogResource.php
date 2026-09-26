@@ -1,9 +1,9 @@
 <?php
 
-namespace Opcodes\LogViewer\Http\Resources;
+namespace WgVn\TrailLogViewer\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Opcodes\LogViewer\Logs\Log;
+use WgVn\TrailLogViewer\Logs\Log;
 
 /**
  * @mixin Log

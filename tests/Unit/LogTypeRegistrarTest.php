@@ -1,7 +1,7 @@
 <?php
 
-use Opcodes\LogViewer\Logs\LogType;
-use Opcodes\LogViewer\LogTypeRegistrar;
+use WgVn\TrailLogViewer\Logs\LogType;
+use WgVn\TrailLogViewer\LogTypeRegistrar;
 
 beforeEach(function () {
     $this->registrar = new LogTypeRegistrar;

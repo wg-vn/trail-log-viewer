@@ -1,10 +1,10 @@
 <?php
 
-namespace Opcodes\LogViewer;
+namespace WgVn\TrailLogViewer;
 
 use Illuminate\Support\Collection;
-use Opcodes\LogViewer\Enums\SortingMethod;
-use Opcodes\LogViewer\Enums\SortingOrder;
+use WgVn\TrailLogViewer\Enums\SortingMethod;
+use WgVn\TrailLogViewer\Enums\SortingOrder;
 
 class LogFolderCollection extends Collection
 {

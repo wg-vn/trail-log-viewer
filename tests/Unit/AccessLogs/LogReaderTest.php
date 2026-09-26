@@ -1,10 +1,10 @@
 <?php
 
-use Opcodes\LogViewer\LogFile;
-use Opcodes\LogViewer\LogLevels\HttpStatusCodeLevel;
-use Opcodes\LogViewer\Logs\HttpAccessLog;
-use Opcodes\LogViewer\Logs\HttpApacheErrorLog;
-use Opcodes\LogViewer\Logs\HttpNginxErrorLog;
+use WgVn\TrailLogViewer\LogFile;
+use WgVn\TrailLogViewer\LogLevels\HttpStatusCodeLevel;
+use WgVn\TrailLogViewer\Logs\HttpAccessLog;
+use WgVn\TrailLogViewer\Logs\HttpApacheErrorLog;
+use WgVn\TrailLogViewer\Logs\HttpNginxErrorLog;
 
 it('can read access logs with the default LogReader', function () {
     $file = new LogFile(__DIR__.'/Fixtures/access_dummy.log');

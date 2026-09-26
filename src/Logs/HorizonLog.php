@@ -1,10 +1,10 @@
 <?php
 
-namespace Opcodes\LogViewer\Logs;
+namespace WgVn\TrailLogViewer\Logs;
 
-use Opcodes\LogViewer\Exceptions\SkipLineException;
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\LogLevels\HorizonStatusLevel;
+use WgVn\TrailLogViewer\Exceptions\SkipLineException;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\LogLevels\HorizonStatusLevel;
 
 class HorizonLog extends Log
 {

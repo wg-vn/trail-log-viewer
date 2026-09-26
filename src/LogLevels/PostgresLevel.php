@@ -1,6 +1,6 @@
 <?php
 
-namespace Opcodes\LogViewer\LogLevels;
+namespace WgVn\TrailLogViewer\LogLevels;
 
 class PostgresLevel implements LevelInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-use Opcodes\LogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\Facades\LogViewer;
 
 it('continues reading when one file cannot be read', function () {
     if (PHP_OS_FAMILY === 'Windows') {

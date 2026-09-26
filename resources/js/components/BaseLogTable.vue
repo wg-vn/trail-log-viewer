@@ -23,7 +23,7 @@
           <div class="flex items-center lg:pl-2">
             <button :aria-expanded="logViewerStore.isOpen(index)"
                     @keydown="handleLogToggleKeyboardNavigation"
-                    class="log-level-icon opacity-75 w-5 h-5 hidden lg:block group focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-md"
+                    class="log-level-icon opacity-75 w-5 h-5 hidden lg:block group focus:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-brand-500 rounded-md"
             >
               <span class="sr-only" v-if="!logViewerStore.isOpen(index)">Expand log entry</span>
               <span class="sr-only" v-if="logViewerStore.isOpen(index)">Collapse log entry</span>
@@ -55,7 +55,7 @@
           <!-- /Datetime -->
 
           <!-- Message -->
-          <td :key="`${log.index}-column-${colIndex}`" v-else-if="column.data_path === 'message'" class="max-w-[1px] w-full truncate text-gray-500 dark:text-gray-300 dark:opacity-90">
+          <td :key="`${log.index}-column-${colIndex}`" v-else-if="column.data_path === 'message'" class="max-w-px w-full truncate text-gray-500 dark:text-gray-300 dark:opacity-90">
             <span v-html="highlightSearchResult(`${log.message}`, searchStore.query)"></span>
           </td>
           <!-- /Message -->

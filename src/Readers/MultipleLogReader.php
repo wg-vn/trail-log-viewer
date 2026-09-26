@@ -1,16 +1,16 @@
 <?php
 
-namespace Opcodes\LogViewer\Readers;
+namespace WgVn\TrailLogViewer\Readers;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
-use Opcodes\LogViewer\Direction;
-use Opcodes\LogViewer\Exceptions\CannotOpenFileException;
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\LevelCount;
-use Opcodes\LogViewer\LogFile;
-use Opcodes\LogViewer\LogFileCollection;
-use Opcodes\LogViewer\Logs\Log;
+use WgVn\TrailLogViewer\Direction;
+use WgVn\TrailLogViewer\Exceptions\CannotOpenFileException;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\LevelCount;
+use WgVn\TrailLogViewer\LogFile;
+use WgVn\TrailLogViewer\LogFileCollection;
+use WgVn\TrailLogViewer\Logs\Log;
 
 class MultipleLogReader
 {

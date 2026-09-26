@@ -1,7 +1,7 @@
 <?php
 
-use Opcodes\LogViewer\Facades\Cache;
-use Opcodes\LogViewer\Utils\GenerateCacheKey;
+use WgVn\TrailLogViewer\Facades\Cache;
+use WgVn\TrailLogViewer\Utils\GenerateCacheKey;
 
 it('can set the last-scanned file position', function () {
     $logIndex = createLogIndex();

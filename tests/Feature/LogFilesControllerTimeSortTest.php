@@ -1,6 +1,6 @@
 <?php
 
-use Opcodes\LogViewer\Enums\SortingMethod;
+use WgVn\TrailLogViewer\Enums\SortingMethod;
 
 use function Pest\Laravel\getJson;
 

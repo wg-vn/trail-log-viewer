@@ -1,6 +1,6 @@
 <?php
 
-use Opcodes\LogViewer\Direction;
+use WgVn\TrailLogViewer\Direction;
 
 test('direction is forward by default', function () {
     $logIndex = createLogIndex();

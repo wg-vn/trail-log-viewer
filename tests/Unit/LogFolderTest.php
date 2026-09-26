@@ -1,8 +1,8 @@
 <?php
 
-use Opcodes\LogViewer\LogFile;
-use Opcodes\LogViewer\LogFolder;
-use Opcodes\LogViewer\Utils\Utils;
+use WgVn\TrailLogViewer\LogFile;
+use WgVn\TrailLogViewer\LogFolder;
+use WgVn\TrailLogViewer\Utils\Utils;
 
 test('LogFolder can get the earliest timestamp of the files it contains', function () {
     $firstFile = Mockery::mock(new LogFile('folder/test.log'))

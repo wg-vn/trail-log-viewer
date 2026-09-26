@@ -1,11 +1,11 @@
 <?php
 
-namespace Opcodes\LogViewer\Http\Controllers;
+namespace WgVn\TrailLogViewer\Http\Controllers;
 
-use Opcodes\LogViewer\Enums\SortingMethod;
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\LogFolder;
-use Opcodes\LogViewer\Utils\Utils;
+use WgVn\TrailLogViewer\Enums\SortingMethod;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\LogFolder;
+use WgVn\TrailLogViewer\Utils\Utils;
 
 class IndexController
 {
@@ -30,7 +30,6 @@ class IndexController
                 'back_to_system_label' => config('log-viewer.back_to_system_label'),
                 'files_sort_by_time' => $files_sort_by_time,
                 'max_log_size_formatted' => Utils::bytesForHumans(LogViewer::maxLogSize()),
-                'show_support_link' => config('log-viewer.show_support_link', true),
 
                 'supports_hosts' => LogViewer::supportsHostsFeature(),
                 'hosts' => LogViewer::getHosts(),

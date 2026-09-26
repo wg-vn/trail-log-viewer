@@ -1,8 +1,8 @@
 <?php
 
-namespace Opcodes\LogViewer\Logs;
+namespace WgVn\TrailLogViewer\Logs;
 
-use Opcodes\LogViewer\LogTypeRegistrar;
+use WgVn\TrailLogViewer\LogTypeRegistrar;
 
 class LogType
 {

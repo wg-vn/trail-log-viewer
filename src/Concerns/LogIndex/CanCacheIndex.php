@@ -1,11 +1,11 @@
 <?php
 
-namespace Opcodes\LogViewer\Concerns\LogIndex;
+namespace WgVn\TrailLogViewer\Concerns\LogIndex;
 
 use Carbon\CarbonInterface;
-use Opcodes\LogViewer\Facades\Cache;
-use Opcodes\LogViewer\LogIndexChunk;
-use Opcodes\LogViewer\Utils\GenerateCacheKey;
+use WgVn\TrailLogViewer\Facades\Cache;
+use WgVn\TrailLogViewer\LogIndexChunk;
+use WgVn\TrailLogViewer\Utils\GenerateCacheKey;
 
 trait CanCacheIndex
 {

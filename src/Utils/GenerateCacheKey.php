@@ -1,10 +1,10 @@
 <?php
 
-namespace Opcodes\LogViewer\Utils;
+namespace WgVn\TrailLogViewer\Utils;
 
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\LogFile;
-use Opcodes\LogViewer\LogIndex;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\LogFile;
+use WgVn\TrailLogViewer\LogIndex;
 
 class GenerateCacheKey
 {

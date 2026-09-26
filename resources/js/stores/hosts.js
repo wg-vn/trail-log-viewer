@@ -1,8 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const useHostStore = defineStore({
-  id: 'hosts',
-
+export const useHostStore = defineStore('hosts', {
   state: () => ({
     selectedHostIdentifier: null,
   }),

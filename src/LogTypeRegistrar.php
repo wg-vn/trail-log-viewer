@@ -1,21 +1,21 @@
 <?php
 
-namespace Opcodes\LogViewer;
+namespace WgVn\TrailLogViewer;
 
-use Opcodes\LogViewer\Exceptions\CannotOpenFileException;
-use Opcodes\LogViewer\Exceptions\SkipLineException;
-use Opcodes\LogViewer\Logs\HorizonLog;
-use Opcodes\LogViewer\Logs\HorizonOldLog;
-use Opcodes\LogViewer\Logs\HttpAccessLog;
-use Opcodes\LogViewer\Logs\HttpApacheErrorLog;
-use Opcodes\LogViewer\Logs\HttpNginxErrorLog;
-use Opcodes\LogViewer\Logs\LaravelLog;
-use Opcodes\LogViewer\Logs\Log;
-use Opcodes\LogViewer\Logs\LogType;
-use Opcodes\LogViewer\Logs\PhpFpmLog;
-use Opcodes\LogViewer\Logs\PostgresLog;
-use Opcodes\LogViewer\Logs\RedisLog;
-use Opcodes\LogViewer\Logs\SupervisorLog;
+use WgVn\TrailLogViewer\Exceptions\CannotOpenFileException;
+use WgVn\TrailLogViewer\Exceptions\SkipLineException;
+use WgVn\TrailLogViewer\Logs\HorizonLog;
+use WgVn\TrailLogViewer\Logs\HorizonOldLog;
+use WgVn\TrailLogViewer\Logs\HttpAccessLog;
+use WgVn\TrailLogViewer\Logs\HttpApacheErrorLog;
+use WgVn\TrailLogViewer\Logs\HttpNginxErrorLog;
+use WgVn\TrailLogViewer\Logs\LaravelLog;
+use WgVn\TrailLogViewer\Logs\Log;
+use WgVn\TrailLogViewer\Logs\LogType;
+use WgVn\TrailLogViewer\Logs\PhpFpmLog;
+use WgVn\TrailLogViewer\Logs\PostgresLog;
+use WgVn\TrailLogViewer\Logs\RedisLog;
+use WgVn\TrailLogViewer\Logs\SupervisorLog;
 
 class LogTypeRegistrar
 {

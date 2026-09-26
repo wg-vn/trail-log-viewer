@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
-use Opcodes\LogViewer\LogFile;
+use WgVn\TrailLogViewer\LogFile;
 
 use function Pest\Laravel\get;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Opcodes\LogViewer\Concerns\LogIndex;
+namespace WgVn\TrailLogViewer\Concerns\LogIndex;
 
 use Carbon\CarbonInterface;
 

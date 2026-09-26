@@ -1,6 +1,6 @@
 <?php
 
-namespace Opcodes\LogViewer\Utils;
+namespace WgVn\TrailLogViewer\Utils;
 
 class Benchmark
 {

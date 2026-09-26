@@ -2,8 +2,8 @@
 
 use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Support\Facades\Route;
-use Opcodes\LogViewer\Http\Middleware\ForwardRequestToHostMiddleware;
-use Opcodes\LogViewer\Http\Middleware\JsonResourceWithoutWrappingMiddleware;
+use WgVn\TrailLogViewer\Http\Middleware\ForwardRequestToHostMiddleware;
+use WgVn\TrailLogViewer\Http\Middleware\JsonResourceWithoutWrappingMiddleware;
 
 Route::get('hosts', 'HostsController@index')->name('log-viewer.hosts');
 

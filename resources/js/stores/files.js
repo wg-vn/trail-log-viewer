@@ -4,9 +4,7 @@ import { useLocalStorage } from '@vueuse/core';
 import { useHostStore } from './hosts.js';
 import { useLogViewerStore } from './logViewer.js';
 
-export const useFileStore = defineStore({
-  id: 'files',
-
+export const useFileStore = defineStore('files', {
   state: () => ({
     // data
     folders: [],
@@ -29,6 +27,7 @@ export const useFileStore = defineStore({
     foldersInView: [],
     containerTop: 0,
     sidebarOpen: false,
+    sidebarCollapsed: useLocalStorage('sidebarCollapsed', false),
   }),
 
   getters: {
@@ -244,6 +243,10 @@ export const useFileStore = defineStore({
 
     toggleSidebar() {
       this.sidebarOpen = !this.sidebarOpen;
+    },
+
+    toggleSidebarCollapsed() {
+      this.sidebarCollapsed = !this.sidebarCollapsed;
     },
 
     checkBoxToggle(file) {

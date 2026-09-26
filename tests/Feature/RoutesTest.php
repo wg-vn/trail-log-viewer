@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Routing\RouteCollection;
-use Opcodes\LogViewer\LogViewerServiceProvider;
+use WgVn\TrailLogViewer\LogViewerServiceProvider;
 
 use function Pest\Laravel\get;
 

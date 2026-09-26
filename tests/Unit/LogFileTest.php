@@ -1,8 +1,8 @@
 <?php
 
-use Opcodes\LogViewer\LogFile;
-use Opcodes\LogViewer\Logs\LogType;
-use Opcodes\LogViewer\Utils\Utils;
+use WgVn\TrailLogViewer\LogFile;
+use WgVn\TrailLogViewer\Logs\LogType;
+use WgVn\TrailLogViewer\Utils\Utils;
 
 test('log file can be instantiated with just a path to the file', function () {
     $path = storage_path('logs/laravel.log');

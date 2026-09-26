@@ -4,11 +4,11 @@ use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\LogFile;
-use Opcodes\LogViewer\LogIndex;
-use Opcodes\LogViewer\Logs\LogType;
-use Opcodes\LogViewer\Tests\TestCase;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\LogFile;
+use WgVn\TrailLogViewer\LogIndex;
+use WgVn\TrailLogViewer\Logs\LogType;
+use WgVn\TrailLogViewer\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);
 uses()->afterEach(fn () => clearGeneratedLogFiles())->in('Feature', 'Unit');

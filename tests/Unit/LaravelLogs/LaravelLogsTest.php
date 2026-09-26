@@ -1,8 +1,8 @@
 <?php
 
-use Opcodes\LogViewer\LogLevels\LaravelLogLevel;
-use Opcodes\LogViewer\Logs\LaravelLog;
-use Opcodes\LogViewer\Utils\Utils;
+use WgVn\TrailLogViewer\LogLevels\LaravelLogLevel;
+use WgVn\TrailLogViewer\Logs\LaravelLog;
+use WgVn\TrailLogViewer\Utils\Utils;
 
 use function PHPUnit\Framework\assertEquals;
 

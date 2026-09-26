@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Gate;
-use Opcodes\LogViewer\LogFile;
+use WgVn\TrailLogViewer\LogFile;
 
 test('can delete every file by default', function () {
     generateLogFiles([$fileName = 'laravel.log']);

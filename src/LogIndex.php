@@ -1,10 +1,10 @@
 <?php
 
-namespace Opcodes\LogViewer;
+namespace WgVn\TrailLogViewer;
 
 use Carbon\CarbonInterface;
 use Illuminate\Support\Collection;
-use Opcodes\LogViewer\Utils\Utils;
+use WgVn\TrailLogViewer\Utils\Utils;
 
 class LogIndex
 {

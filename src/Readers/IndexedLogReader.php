@@ -1,16 +1,16 @@
 <?php
 
-namespace Opcodes\LogViewer\Readers;
+namespace WgVn\TrailLogViewer\Readers;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
-use Opcodes\LogViewer\Concerns;
-use Opcodes\LogViewer\Exceptions\CannotOpenFileException;
-use Opcodes\LogViewer\Exceptions\SkipLineException;
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\LevelCount;
-use Opcodes\LogViewer\LogIndex;
-use Opcodes\LogViewer\Logs\Log;
+use WgVn\TrailLogViewer\Concerns;
+use WgVn\TrailLogViewer\Exceptions\CannotOpenFileException;
+use WgVn\TrailLogViewer\Exceptions\SkipLineException;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\LevelCount;
+use WgVn\TrailLogViewer\LogIndex;
+use WgVn\TrailLogViewer\Logs\Log;
 
 class IndexedLogReader extends BaseLogReader implements LogReaderInterface
 {

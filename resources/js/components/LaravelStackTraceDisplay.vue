@@ -18,7 +18,7 @@
       <div v-for="(frame, frameIndex) in stackTrace.frames" :key="frameIndex"
            class="mb-2 border-b border-gray-100 dark:border-gray-700 pb-2 last:border-b-0">
         <div class="flex items-start gap-2">
-          <div class="text-xs text-gray-500 dark:text-gray-400 font-mono w-8 flex-shrink-0 pt-1">
+          <div class="text-xs text-gray-500 dark:text-gray-400 font-mono w-8 shrink-0 pt-1">
             #{{ frame.number }}
           </div>
           <div class="flex-1 min-w-0">

@@ -1,14 +1,14 @@
 <?php
 
-namespace Opcodes\LogViewer\Http\Controllers;
+namespace WgVn\TrailLogViewer\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
-use Opcodes\LogViewer\Enums\SortingMethod;
-use Opcodes\LogViewer\Enums\SortingOrder;
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\Http\Resources\LogFileResource;
+use WgVn\TrailLogViewer\Enums\SortingMethod;
+use WgVn\TrailLogViewer\Enums\SortingOrder;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\Http\Resources\LogFileResource;
 
 class FilesController
 {

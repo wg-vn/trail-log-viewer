@@ -1,8 +1,8 @@
 <?php
 
-namespace Opcodes\LogViewer;
+namespace WgVn\TrailLogViewer;
 
-use Opcodes\LogViewer\LogLevels\LevelInterface;
+use WgVn\TrailLogViewer\LogLevels\LevelInterface;
 
 class LevelCount
 {

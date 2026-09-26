@@ -1,7 +1,7 @@
 <?php
 
-namespace Opcodes\LogViewer\Tests\Unit\CustomLogs;
+namespace WgVn\TrailLogViewer\Tests\Unit\CustomLogs;
 
-use Opcodes\LogViewer\Logs\Log;
+use WgVn\TrailLogViewer\Logs\Log;
 
 class CustomAccessLog extends Log {}

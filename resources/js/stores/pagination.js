@@ -1,8 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const usePaginationStore = defineStore({
-  id: 'pagination',
-
+export const usePaginationStore = defineStore('pagination', {
   state: () => ({
     page: 1,
     pagination: {},

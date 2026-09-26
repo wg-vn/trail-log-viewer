@@ -1,10 +1,10 @@
 <?php
 
-use Opcodes\LogViewer\Enums\SortingMethod;
-use Opcodes\LogViewer\Enums\SortingOrder;
-use Opcodes\LogViewer\Enums\Theme;
-use Opcodes\LogViewer\Http\Middleware\AuthorizeLogViewer;
-use Opcodes\LogViewer\Http\Middleware\EnsureFrontendRequestsAreStateful;
+use WgVn\TrailLogViewer\Enums\SortingMethod;
+use WgVn\TrailLogViewer\Enums\SortingOrder;
+use WgVn\TrailLogViewer\Enums\Theme;
+use WgVn\TrailLogViewer\Http\Middleware\AuthorizeLogViewer;
+use WgVn\TrailLogViewer\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 return [
 

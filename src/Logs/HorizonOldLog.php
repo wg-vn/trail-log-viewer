@@ -1,9 +1,9 @@
 <?php
 
-namespace Opcodes\LogViewer\Logs;
+namespace WgVn\TrailLogViewer\Logs;
 
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\LogLevels\HorizonStatusLevel;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\LogLevels\HorizonStatusLevel;
 
 class HorizonOldLog extends Log
 {

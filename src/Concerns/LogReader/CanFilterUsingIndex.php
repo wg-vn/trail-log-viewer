@@ -1,8 +1,8 @@
 <?php
 
-namespace Opcodes\LogViewer\Concerns\LogReader;
+namespace WgVn\TrailLogViewer\Concerns\LogReader;
 
-use Opcodes\LogViewer\Utils\Utils;
+use WgVn\TrailLogViewer\Utils\Utils;
 
 trait CanFilterUsingIndex
 {

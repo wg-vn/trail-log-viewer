@@ -1,16 +1,25 @@
 <template>
-  <div class="absolute z-20 top-0 bottom-10 bg-gray-100 dark:bg-gray-900 md:left-0 md:flex md:w-88 md:flex-col md:fixed md:inset-y-0"
-       :class="[fileStore.sidebarOpen ? 'left-0 right-0 md:left-auto md:right-auto' : '-left-[200%] right-[200%] md:left-auto md:right-auto']"
+  <div class="absolute z-20 top-0 bottom-10 bg-gray-100 dark:bg-gray-900 md:left-0 md:w-88 md:flex-col md:fixed md:inset-y-0"
+       :class="[
+         fileStore.sidebarOpen ? 'left-0 right-0 md:left-auto md:right-auto' : 'left-[-200%] right-[200%] md:left-auto md:right-auto',
+         fileStore.sidebarCollapsed ? 'md:hidden' : 'md:flex',
+       ]"
   >
     <file-list></file-list>
   </div>
 
-  <div class="md:pl-88 flex flex-col flex-1 min-h-screen max-h-screen max-w-full">
+  <div v-if="fileStore.sidebarCollapsed" class="hidden md:flex md:fixed md:inset-y-0 md:left-0 md:w-12 md:justify-center md:pt-5 z-20">
+    <button type="button" class="menu-button h-fit" title="Expand sidebar" @click="fileStore.toggleSidebarCollapsed">
+      <ChevronDoubleRightIcon class="w-5 h-5" />
+    </button>
+  </div>
+
+  <div class="flex flex-col flex-1 min-h-screen max-h-screen max-w-full" :class="fileStore.sidebarCollapsed ? 'md:pl-9' : 'md:pl-88'">
     <log-list class="pb-16 md:pb-12"></log-list>
   </div>
 
   <div class="absolute bottom-4 right-4 flex items-center">
-    <p class="text-xs text-gray-500 dark:text-gray-400 mr-5 -mb-0.5">
+    <p class="text-xs text-gray-500 dark:text-gray-400 -mb-0.5">
       <template v-if="logViewerStore.performance?.requestTime">
         <span><span class="hidden md:inline">Memory: </span><span class="font-semibold">{{ logViewerStore.performance.memoryUsage }}</span></span>
         <span class="mx-1.5">&middot;</span>
@@ -19,9 +28,6 @@
       </template>
       <span><span class="hidden md:inline">Version: </span><span class="font-semibold">{{ LogViewer.version }}</span></span>
     </p>
-    <a href="https://www.buymeacoffee.com/arunas" target="_blank" v-if="LogViewer.show_support_link">
-      <bmc-logo class="h-6 w-auto" title="Support me by buying me a cup of coffee ❤️" />
-    </a>
   </div>
 
   <keyboard-shortcuts-overlay />
@@ -37,10 +43,10 @@ import { useSearchStore } from '../stores/search.js';
 import { usePaginationStore } from '../stores/pagination.js';
 import { useRoute, useRouter } from 'vue-router';
 import { onBeforeMount, onBeforeUnmount, onMounted, watch } from 'vue';
-import BmcLogo from '../components/BmcLogo.vue';
 import { replaceQuery } from '../helpers.js';
 import { registerGlobalShortcuts, unregisterGlobalShortcuts } from '../keyboardNavigation';
 import KeyboardShortcutsOverlay from '../components/KeyboardShortcutsOverlay.vue';
+import { ChevronDoubleRightIcon } from '@heroicons/vue/24/outline';
 
 const hostStore = useHostStore();
 const logViewerStore = useLogViewerStore();

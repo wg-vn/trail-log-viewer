@@ -1,6 +1,6 @@
 <?php
 
-namespace Opcodes\LogViewer\Facades;
+namespace WgVn\TrailLogViewer\Facades;
 
 use Illuminate\Cache\Repository;
 use Illuminate\Support\Facades\Facade;

@@ -1,6 +1,6 @@
 <?php
 
-use Opcodes\LogViewer\Readers\IndexedLogReader;
+use WgVn\TrailLogViewer\Readers\IndexedLogReader;
 
 use function Pest\Laravel\getJson;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Opcodes\LogViewer\Http\Middleware;
+namespace WgVn\TrailLogViewer\Http\Middleware;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Gate;
-use Opcodes\LogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\Facades\LogViewer;
 
 class AuthorizeLogViewer
 {

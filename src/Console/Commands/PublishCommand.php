@@ -1,11 +1,11 @@
 <?php
 
-namespace Opcodes\LogViewer\Console\Commands;
+namespace WgVn\TrailLogViewer\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Opcodes\LogViewer\LogViewerServiceProvider;
 use Spatie\Watcher\Watch;
+use WgVn\TrailLogViewer\LogViewerServiceProvider;
 
 class PublishCommand extends Command
 {

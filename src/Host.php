@@ -1,8 +1,8 @@
 <?php
 
-namespace Opcodes\LogViewer;
+namespace WgVn\TrailLogViewer;
 
-use Opcodes\LogViewer\Utils\Utils;
+use WgVn\TrailLogViewer\Utils\Utils;
 
 class Host
 {

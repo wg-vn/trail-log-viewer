@@ -3,7 +3,7 @@
 /** @noinspection PhpUndefinedNamespaceInspection */
 /** @noinspection PhpUndefinedClassInspection */
 
-namespace Opcodes\LogViewer;
+namespace WgVn\TrailLogViewer;
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\Facades\Cache;
@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Octane\Events\RequestTerminated;
-use Opcodes\LogViewer\Console\Commands\GenerateDummyLogsCommand;
-use Opcodes\LogViewer\Console\Commands\PublishCommand;
-use Opcodes\LogViewer\Events\LogFileDeleted;
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\Http\Middleware\EnsureFrontendRequestsAreStateful;
+use WgVn\TrailLogViewer\Console\Commands\GenerateDummyLogsCommand;
+use WgVn\TrailLogViewer\Console\Commands\PublishCommand;
+use WgVn\TrailLogViewer\Events\LogFileDeleted;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 class LogViewerServiceProvider extends ServiceProvider
 {
@@ -32,15 +32,13 @@ class LogViewerServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(self::basePath("/config/{$this->name}.php"), $this->name);
 
-        $bindMethod = method_exists($this->app, 'scoped') ? 'scoped' : 'singleton';
-
-        $this->app->$bindMethod('log-viewer', LogViewerService::class);
-        $this->app->$bindMethod('log-viewer-cache', function () {
+        $this->app->scoped('log-viewer', LogViewerService::class);
+        $this->app->scoped('log-viewer-cache', function () {
             return Cache::driver(config('log-viewer.cache_driver'));
         });
 
         if (! $this->app->bound(LogTypeRegistrar::class)) {
-            $this->app->$bindMethod(LogTypeRegistrar::class, function () {
+            $this->app->scoped(LogTypeRegistrar::class, function () {
                 return new LogTypeRegistrar;
             });
         }
@@ -91,7 +89,7 @@ class LogViewerServiceProvider extends ServiceProvider
         Route::group([
             'domain' => config('log-viewer.route_domain', null),
             'prefix' => Str::finish(config('log-viewer.route_path'), '/').'api',
-            'namespace' => 'Opcodes\LogViewer\Http\Controllers',
+            'namespace' => 'WgVn\TrailLogViewer\Http\Controllers',
             'middleware' => config('log-viewer.api_middleware', null),
         ], function () {
             $this->loadRoutesFrom(self::basePath('/routes/api.php'));
@@ -100,7 +98,7 @@ class LogViewerServiceProvider extends ServiceProvider
         Route::group([
             'domain' => config('log-viewer.route_domain', null),
             'prefix' => config('log-viewer.route_path'),
-            'namespace' => 'Opcodes\LogViewer\Http\Controllers',
+            'namespace' => 'WgVn\TrailLogViewer\Http\Controllers',
             'middleware' => config('log-viewer.middleware', null),
         ], function () {
             $this->loadRoutesFrom(self::basePath('/routes/web.php'));

@@ -1,7 +1,7 @@
 <?php
 
-use Opcodes\LogViewer\Facades\LogViewer;
-use Opcodes\LogViewer\LogViewerService;
+use WgVn\TrailLogViewer\Facades\LogViewer;
+use WgVn\TrailLogViewer\LogViewerService;
 
 beforeEach(function () {
     // irrelevant option for these tests, so let's show all files.
