@@ -58,6 +58,7 @@ export const useLogViewerStore = defineStore('logViewer', {
     stackTops: {},
     containerTop: 0,
     showLevelsDropdown: true,
+    seekTimestamp: null,
   }),
 
   getters: {
@@ -220,6 +221,7 @@ export const useLogViewerStore = defineStore('logViewer', {
         query: searchStore.query,
         page: paginationStore.currentPage,
         per_page: this.resultsPerPage,
+        seek: this.seekTimestamp || undefined,
         exclude_levels: toRaw(severityStore.excludedLevels),
         exclude_file_types: toRaw(fileStore.fileTypesExcluded),
         shorter_stack_traces: this.shorterStackTraces,
@@ -246,8 +248,15 @@ export const useLogViewerStore = defineStore('logViewer', {
           this.percentScanned = data.percentScanned;
           this.error = data.error || null;
           this.performance = data.performance || {};
+          if (data.earliest_timestamp || data.latest_timestamp) {
+            this.performance.earliest_timestamp = data.earliest_timestamp;
+            this.performance.latest_timestamp = data.latest_timestamp;
+          }
           severityStore.setLevelCounts(data.levelCounts);
           paginationStore.setPagination(data.pagination);
+          if (data.seek_page) {
+            paginationStore.setPage(data.seek_page);
+          }
 
           this.loading = false;
 

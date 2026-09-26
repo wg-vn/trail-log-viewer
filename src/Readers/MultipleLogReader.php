@@ -2,6 +2,7 @@
 
 namespace WgVn\TrailLogViewer\Readers;
 
+use Carbon\CarbonInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use WgVn\TrailLogViewer\Direction;
@@ -235,12 +236,85 @@ class MultipleLogReader
         }
     }
 
+    protected ?int $dateFrom = null;
+    protected ?int $dateTo = null;
+
+    public function forDateRange(CarbonInterface|int|null $from = null, CarbonInterface|int|null $to = null): self
+    {
+        if ($from instanceof CarbonInterface) {
+            $from = $from->timestamp;
+        }
+        if ($to instanceof CarbonInterface) {
+            $to = $to->timestamp;
+        }
+        $this->dateFrom = $from;
+        $this->dateTo = $to;
+
+        return $this;
+    }
+
+    public function getVelocity(int $bucketCount = 40, ?int $from = null, ?int $to = null): array
+    {
+        $allBuckets = [];
+        $earliest = null;
+        $latest = null;
+        $total = 0;
+
+        /** @var LogFile $file */
+        foreach ($this->fileCollection as $file) {
+            $reader = $this->getLogQueryForFile($file);
+            if ($reader instanceof IndexedLogReader) {
+                $vel = $reader->getVelocity($bucketCount, $from, $to);
+                if (! empty($vel['earliest_timestamp'])) {
+                    $earliest = min($earliest ?? $vel['earliest_timestamp'], $vel['earliest_timestamp']);
+                }
+                if (! empty($vel['latest_timestamp'])) {
+                    $latest = max($latest ?? $vel['latest_timestamp'], $vel['latest_timestamp']);
+                }
+                foreach ($vel['buckets'] as $bucket) {
+                    $ts = $bucket['timestamp'];
+                    if (! isset($allBuckets[$ts])) {
+                        $allBuckets[$ts] = [
+                            'timestamp' => $ts,
+                            'label' => $bucket['label'],
+                            'count' => 0,
+                            'levels' => [],
+                        ];
+                    }
+                    $allBuckets[$ts]['count'] += $bucket['count'];
+                    $total += $bucket['count'];
+                    foreach ($bucket['levels'] as $lvl => $cnt) {
+                        $allBuckets[$ts]['levels'][$lvl] = ($allBuckets[$ts]['levels'][$lvl] ?? 0) + $cnt;
+                    }
+                }
+            }
+        }
+
+        ksort($allBuckets);
+
+        return [
+            'buckets' => array_values($allBuckets),
+            'bucket_size' => 60,
+            'total' => $total,
+            'earliest_timestamp' => $earliest,
+            'latest_timestamp' => $latest,
+            'from' => $from ?? $earliest,
+            'to' => $to ?? $latest,
+        ];
+    }
+
     protected function getLogQueryForFile(LogFile $file): LogReaderInterface
     {
-        return $file->logs()
+        $query = $file->logs()
             ->search($this->query)
             ->setDirection($this->direction)
             ->exceptLevels($this->exceptLevels)
             ->lazyScanning();
+
+        if (isset($this->dateFrom) || isset($this->dateTo)) {
+            $query->forDateRange($this->dateFrom, $this->dateTo);
+        }
+
+        return $query;
     }
 }

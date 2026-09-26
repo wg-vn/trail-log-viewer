@@ -6,6 +6,7 @@ providers:
 
 env:
   - CACHE_STORE=file
+  - APP_KEY=base64:Hupx3yAySikrM2/edkZQNQHJWoyGLcxfixsohxVeIT8=
 
 workbench:
   start: '/log-viewer'

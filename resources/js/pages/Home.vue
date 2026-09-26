@@ -31,11 +31,13 @@
   </div>
 
   <keyboard-shortcuts-overlay />
+  <alert-toasts />
 </template>
 
 <script setup>
 import FileList from '../components/FileList.vue';
 import LogList from '../components/LogList.vue';
+import AlertToasts from '../components/AlertToasts.vue';
 import { useHostStore } from '../stores/hosts.js';
 import { useLogViewerStore } from '../stores/logViewer.js';
 import { useFileStore } from '../stores/files.js';
@@ -77,6 +79,7 @@ watch(
     fileStore.selectFile(query.file || null);
     paginationStore.setPage(query.page || 1);
     searchStore.setQuery(query.query || '');
+    logViewerStore.seekTimestamp = query.seek || query.t || null;
 
     logViewerStore.loadLogs();
   },

@@ -54,22 +54,21 @@ export const copyToClipboard = (str) => {
 export const replaceQuery = (router, key, value) => {
   const route = router.currentRoute.value;
   const query = {
-    host: route.query.host || undefined,
-    file: route.query.file || undefined,
-    query: route.query.query || undefined,
-    page: route.query.page || undefined,
+    ...route.query,
   };
 
-  // maybe this logic shouldn't be here, but that's what works for now.
-  // calling `replaceQuery` twice in a single "tick" can cause previous change to be reverted.
   if (key === 'host') {
-    query.file = undefined;
-    query.page = undefined;
+    delete query.file;
+    delete query.page;
   } else if (key === 'file' && query.page !== undefined) {
-    query.page = undefined;
+    delete query.page;
   }
 
-  query[key] = value ? String(value) : undefined;
+  if (value === undefined || value === null || value === '') {
+    delete query[key];
+  } else {
+    query[key] = String(value);
+  }
 
   router.push({ name: 'home', query });
 };

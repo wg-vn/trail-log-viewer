@@ -1,11 +1,16 @@
 <template>
-  <table class="table-fixed min-w-full max-w-full border-separate" style="border-spacing: 0">
-    <thead class="bg-gray-50">
+  <table class="table-fixed min-w-full max-w-full border-separate" :class="[displayPrefs.fontFamilyClass, displayPrefs.fontSizeClass]" style="border-spacing: 0">
+    <thead class="bg-gray-50 dark:bg-gray-800">
     <tr>
       <th class="hidden lg:table-cell"><span class="sr-only">Expand/Collapse</span></th>
-      <th v-for="(column) in logViewerStore.columns" scope="col">
-        <div>{{ column.label }}</div>
-      </th>
+      <template v-for="(column) in logViewerStore.columns">
+        <th
+          v-show="column.data_path === 'level' ? displayPrefs.columnVisibility.severity : (column.data_path === 'datetime' ? displayPrefs.columnVisibility.datetime : (column.data_path === 'env' ? displayPrefs.columnVisibility.env : true))"
+          scope="col"
+        >
+          <div>{{ column.label }}</div>
+        </th>
+      </template>
       <th scope="col" class="hidden lg:table-cell"><span class="sr-only">Log index</span></th>
     </tr>
     </thead>
@@ -42,26 +47,49 @@
 
         <template v-for="(column, colIndex) in logViewerStore.columns">
           <!-- Severity -->
-          <td :key="`${log.index}-column-${colIndex}`" v-if="column.data_path === 'level'" class="log-level truncate">
+          <td
+            :key="`${log.index}-column-${colIndex}`"
+            v-if="column.data_path === 'level'"
+            v-show="displayPrefs.columnVisibility.severity"
+            class="log-level truncate"
+            :class="displayPrefs.rowPaddingClass"
+          >
             <span>{{ log.level_name }}</span>
           </td>
           <!-- /Severity -->
 
           <!-- Datetime -->
-          <td :key="`${log.index}-column-${colIndex}`" v-else-if="column.data_path === 'datetime'" class="whitespace-nowrap text-gray-900 dark:text-gray-200">
-            <span class="hidden lg:inline" v-html="highlightSearchResult(log.datetime, searchStore.query)"></span>
-            <span class="lg:hidden">{{ log.time }}</span>
+          <td
+            :key="`${log.index}-column-${colIndex}`"
+            v-else-if="column.data_path === 'datetime'"
+            v-show="displayPrefs.columnVisibility.datetime"
+            class="whitespace-nowrap text-gray-900 dark:text-gray-200"
+            :class="displayPrefs.rowPaddingClass"
+          >
+            <span class="hidden lg:inline" v-html="highlightSearchResult(formatDatetime(log.datetime), displayPrefs.highlightMatches ? searchStore.query : null)"></span>
+            <span class="lg:hidden">{{ formatDatetime(log.time) }}</span>
           </td>
           <!-- /Datetime -->
 
           <!-- Message -->
-          <td :key="`${log.index}-column-${colIndex}`" v-else-if="column.data_path === 'message'" class="max-w-px w-full truncate text-gray-500 dark:text-gray-300 dark:opacity-90">
-            <span v-html="highlightSearchResult(`${log.message}`, searchStore.query)"></span>
+          <td
+            :key="`${log.index}-column-${colIndex}`"
+            v-else-if="column.data_path === 'message'"
+            class="w-full text-gray-500 dark:text-gray-300 dark:opacity-90"
+            :class="[displayPrefs.truncateMessage ? 'max-w-px truncate' : 'break-words whitespace-pre-wrap', displayPrefs.rowPaddingClass]"
+          >
+            <span v-html="highlightSearchResult(`${log.message}`, displayPrefs.highlightMatches ? searchStore.query : null)"></span>
           </td>
           <!-- /Message -->
 
-          <td :key="`${log.index}-column-${colIndex}`" v-else class="text-gray-500 dark:text-gray-300 dark:opacity-90" :class="column.class || ''">
-            <span v-html="highlightSearchResult(getDataAtPath(log, column.data_path), searchStore.query)"></span>
+          <td
+            :key="`${log.index}-column-${colIndex}`"
+            v-else
+            v-show="column.data_path !== 'env' || displayPrefs.columnVisibility.env"
+            class="text-gray-500 dark:text-gray-300 dark:opacity-90"
+            :class="[column.class || '', displayPrefs.rowPaddingClass]"
+          >
+            <span v-html="highlightSearchResult(getDataAtPath(log, column.data_path), displayPrefs.highlightMatches ? searchStore.query : null)"></span>
           </td>
         </template>
 
@@ -151,6 +179,7 @@ import { useFileStore } from '../stores/files.js';
 import LogCopyButton from './LogCopyButton.vue';
 import { handleLogToggleKeyboardNavigation } from '../keyboardNavigation';
 import { useSeverityStore } from '../stores/severity.js';
+import { useDisplayPreferencesStore } from '../stores/displayPreferences.js';
 import TabContainer from "./TabContainer.vue";
 import TabContent from "./TabContent.vue";
 import MailHtmlPreview from "./MailHtmlPreview.vue";
@@ -162,6 +191,20 @@ const fileStore = useFileStore();
 const logViewerStore = useLogViewerStore();
 const searchStore = useSearchStore();
 const severityStore = useSeverityStore();
+const displayPrefs = useDisplayPreferencesStore();
+
+const formatDatetime = (dtStr) => {
+  if (!dtStr) return '';
+  if (!displayPrefs.utcTimestamps) return dtStr;
+  try {
+    const d = new Date(dtStr);
+    if (isNaN(d.getTime())) return dtStr;
+    return d.toISOString().replace('T', ' ').replace(/\.\d+Z$/, ' UTC');
+  } catch (e) {
+    return dtStr;
+  }
+};
+
 const emit = defineEmits(['clearSelectedFile', 'clearQuery']);
 
 const clearSelectedFile = () => {

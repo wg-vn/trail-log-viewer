@@ -5,7 +5,6 @@
 build
 /composer.lock
 /coverage
-/docs
 /logs
 phpunit.xml
 phpstan.neon

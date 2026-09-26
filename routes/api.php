@@ -25,6 +25,7 @@ Route::middleware([
     Route::post('delete-multiple-files', 'FilesController@deleteMultipleFiles')->name('log-viewer.files.delete-multiple-files');
 
     Route::get('logs', 'LogsController@index')->name('log-viewer.logs');
+    Route::get('logs/velocity', 'LogsController@velocity')->name('log-viewer.logs.velocity');
 });
 
 Route::get('folders/{folderIdentifier}/download', 'FoldersController@download')

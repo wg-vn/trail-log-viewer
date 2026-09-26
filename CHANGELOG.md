@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-09-25
+
+### Added
+- Papertrail-style docked bottom toolbar with embedded search actions and live status controls.
+- Recent and Saved Searches: query history with relative timestamps and bookmarkable saved search rules in local storage.
+- Search syntax reference card modal with interactive query preset insertion.
+- Seek to Date or Time: relative jump presets (5m, 15m, 1h, 6h, 24h, Now) and datetime picker with index page resolution.
+- Interactive Velocity Graph: SVG event frequency histogram with Rate and Count modes, time windows, and click-to-seek.
+- Display Preferences: customizable typography (fonts, sizes), row density (Comfort / Compact), search match highlighting, message truncation, UTC timestamps, and column visibility.
+- Search Query Alerts: configurable alert rules with threshold conditions and delivery actions (desktop browser push, in-app toasts, webhooks, email).
+- Live Tail Streaming: real-time polling with pulsating status indicator, auto-scroll to newest entries, and smart pause-on-scroll with quick resume banner.
+- REST API Velocity Endpoint: `GET /log-viewer/api/logs/velocity` and `seek`, `date_from`, `date_to` parameters on `/log-viewer/api/logs`.
+- Comprehensive Documentation Suite: 24 markdown documentation guides under `/docs` (excluded from Composer package distribution archives via `.gitattributes`).
+
 ## [1.0.0] - 2026-09-25
 
 ### Changed

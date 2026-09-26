@@ -2,6 +2,7 @@
 
 namespace WgVn\TrailLogViewer\Concerns\LogReader;
 
+use Carbon\CarbonInterface;
 use WgVn\TrailLogViewer\Utils\Utils;
 
 trait CanFilterUsingIndex
@@ -58,6 +59,13 @@ trait CanFilterUsingIndex
     public function exceptLevels($levels = null): static
     {
         $this->index()->exceptLevels($levels);
+
+        return $this;
+    }
+
+    public function forDateRange(CarbonInterface|int|null $from = null, CarbonInterface|int|null $to = null): static
+    {
+        $this->index()->forDateRange($from, $to);
 
         return $this;
     }

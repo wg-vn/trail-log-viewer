@@ -11,6 +11,7 @@ use WgVn\TrailLogViewer\Logs\LogType;
 use WgVn\TrailLogViewer\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);
+uses()->beforeEach(fn () => clearGeneratedLogFiles())->in('Feature', 'Unit');
 uses()->afterEach(fn () => clearGeneratedLogFiles())->in('Feature', 'Unit');
 uses()->beforeEach(fn () => Artisan::call('log-viewer:publish'))->in('Feature');
 uses()->beforeEach(function () {

@@ -360,4 +360,14 @@ class IndexedLogReader extends BaseLogReader implements LogReaderInterface
 
         return $currentLog;
     }
+
+    public function findPageForTimestamp(int $timestamp, int $perPage, string $direction = 'desc'): int
+    {
+        return $this->index()->findPageForTimestamp($timestamp, $perPage, $direction);
+    }
+
+    public function getVelocity(int $bucketCount = 40, ?int $from = null, ?int $to = null): array
+    {
+        return $this->index()->getVelocity($bucketCount, $from, $to);
+    }
 }

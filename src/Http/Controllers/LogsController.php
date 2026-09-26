@@ -25,6 +25,9 @@ class LogsController
         $excludedLevels = $request->query('exclude_levels', []);
         $excludedFileTypes = $request->query('exclude_file_types', []);
         $perPage = $request->query('per_page', 25);
+        $seek = $request->query('seek') ?? $request->query('t');
+        $dateFrom = $request->query('date_from');
+        $dateTo = $request->query('date_to');
         session()->put('log-viewer:shorter-stack-traces', $request->boolean('shorter_stack_traces', false));
         $hasMoreResults = false;
         $percentScanned = 0;
@@ -49,6 +52,8 @@ class LogsController
             $logClass = Log::class;
         }
 
+        $seekPage = null;
+
         if (isset($logQuery)) {
             try {
                 $logQuery->search($query);
@@ -64,6 +69,18 @@ class LogsController
 
                 $logQuery->scan();
                 $logQuery->exceptLevels($excludedLevels);
+
+                if (! empty($dateFrom) || ! empty($dateTo)) {
+                    $logQuery->forDateRange($dateFrom ? (int) $dateFrom : null, $dateTo ? (int) $dateTo : null);
+                }
+
+                if (! empty($seek) && ! $request->has('page')) {
+                    if (method_exists($logQuery, 'findPageForTimestamp')) {
+                        $seekPage = $logQuery->findPageForTimestamp((int) $seek, (int) $perPage, $direction);
+                        $request->replace(['page' => $seekPage]);
+                    }
+                }
+
                 $logs = $logQuery->paginate((int) $perPage);
                 $levels = array_values($logQuery->getLevelCounts());
 
@@ -100,12 +117,70 @@ class LogsController
                 'to' => $logs->lastItem(),
                 'total' => $logs->total(),
             ] : null,
+            'seek' => $seek ? (int) $seek : null,
+            'seek_page' => $seekPage,
+            'earliest_timestamp' => isset($file) ? $file->getMetadata('earliest_timestamp') : null,
+            'latest_timestamp' => isset($file) ? $file->getMetadata('latest_timestamp') : null,
             'expandAutomatically' => $expandAutomatically ?? false,
             'cacheRecentlyCleared' => $this->cacheRecentlyCleared ?? false,
             'hasMoreResults' => $hasMoreResults,
             'percentScanned' => $percentScanned,
             'performance' => $this->getRequestPerformanceInfo(),
         ]);
+    }
+
+    public function velocity(Request $request)
+    {
+        $fileIdentifier = $request->query('file', '');
+        $query = $request->query('query', '');
+        $range = $request->query('range', '1h');
+        $from = $request->query('from');
+        $to = $request->query('to');
+        $excludedLevels = $request->query('exclude_levels', []);
+        $excludedFileTypes = $request->query('exclude_file_types', []);
+
+        if ($file = LogViewer::getFile($fileIdentifier)) {
+            $logQuery = $file->logs();
+        } else {
+            $fileCollection = LogViewer::getFiles();
+            if (! empty($excludedFileTypes)) {
+                $fileCollection = $fileCollection->filter(function ($file) use ($excludedFileTypes) {
+                    return ! in_array($file->type()->value, $excludedFileTypes);
+                })->values();
+            }
+            $logQuery = $fileCollection->logs();
+        }
+
+        $logQuery->search($query);
+        $logQuery->scan();
+        $logQuery->exceptLevels($excludedLevels);
+
+        $now = time();
+        if (empty($from)) {
+            $seconds = match ($range) {
+                '15m' => 15 * 60,
+                '1h' => 60 * 60,
+                '6h' => 6 * 3600,
+                '12h' => 12 * 3600,
+                '24h' => 24 * 3600,
+                '7d' => 7 * 86400,
+                'all' => null,
+                default => 3600,
+            };
+
+            if ($seconds) {
+                $from = $now - $seconds;
+                $to = $now;
+            }
+        }
+
+        $data = $logQuery->getVelocity(
+            bucketCount: 40,
+            from: $from ? (int) $from : null,
+            to: $to ? (int) $to : null,
+        );
+
+        return response()->json($data);
     }
 
     protected function getRequestPerformanceInfo(): array
